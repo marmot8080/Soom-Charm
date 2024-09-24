@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:isolate';
 import 'dart:typed_data';
 import 'package:fftea/fftea.dart';
 import 'package:record/record.dart';
@@ -49,7 +48,7 @@ class BreathAnalyzer {
     }
 
     // FFT 계산을 Isolate에서 수행
-    var lowFreqEnergy = await compute(_calculateLowFreqEnergyInIsolate, floatData);
+    var lowFreqEnergy = await compute(_calculateLowFreqEnergy, floatData);
 
     if (onEnergyDetected != null) {
       onEnergyDetected!(lowFreqEnergy);
@@ -66,7 +65,7 @@ class BreathAnalyzer {
 }
 
 // Isolate에서 실행할 함수 (FFT 계산)
-double _calculateLowFreqEnergyInIsolate(Float32List floatData) {
+double _calculateLowFreqEnergy(Float32List floatData) {
   final STFT stft = STFT(1024, Window.hanning(1024));
   var lowFreqEnergy = 0.0;
 
