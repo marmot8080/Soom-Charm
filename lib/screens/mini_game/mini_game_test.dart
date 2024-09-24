@@ -20,7 +20,7 @@ class _MiniGameTestState extends State<MiniGameTest> {
       onEnergyDetected: (lowFreqEnergy) {
         setState(() {
           _lowFreqEnergy = lowFreqEnergy;
-          _statusMessage = lowFreqEnergy > 10
+          _statusMessage = lowFreqEnergy > 500
               ? "바람 소리 감지됨!"
               : "바람 소리 없음";
         });
