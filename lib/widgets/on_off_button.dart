@@ -26,7 +26,7 @@ class _OnOffButtonState extends State<OnOffButton> {
       style: ElevatedButton.styleFrom(
         backgroundColor: isOn ? Colors.red : Colors.green,
         shape: CircleBorder(),
-        padding: EdgeInsets.all(120),
+        padding: EdgeInsets.all(100),
       ),
       child: Text(
         isOn ? 'STOP' : 'START',
