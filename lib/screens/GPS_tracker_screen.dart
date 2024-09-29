@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; // Provider 패키지 추가
+import 'package:provider/provider.dart';
 import 'package:soom_charm/util/GPS_tracker.dart';
 import 'package:soom_charm/widgets/on_off_button.dart';
 
@@ -10,12 +10,21 @@ class GPSTrackerScreen extends StatefulWidget {
 
 class _GPSTrackerScreen extends State<GPSTrackerScreen> {
   final GPSTracker _gpsTracker = GPSTracker();
+  bool _isDialogVisible = false;
 
   @override
   void initState() {
     super.initState();
     _gpsTracker.addListener(() {
-      setState(() {}); // 거리 변화 시 상태 업데이트
+      setState(() {
+        // 속도 30km/h 초과 시 다이얼로그 띄우기
+        if (_gpsTracker.speedInKmh > 30) {
+          if (_isDialogVisible == false) {
+            _isDialogVisible = true;
+            _showSpeedWarningDialog();
+          }
+        }
+      }); // 거리 변화 시 상태 업데이트
     });
   }
 
@@ -31,6 +40,27 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
     } else {
       _gpsTracker.stopTracking();
     }
+  }
+
+  void _showSpeedWarningDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('속도초과'),
+          content: Text('속도가 너무 빠릅니다.\n좀 더 천천히 걸으세요.'),
+          actions: [
+            TextButton(
+              child: Text('확인'),
+              onPressed: () {
+                Navigator.of(context).pop(); // 다이얼로그 닫기
+                _isDialogVisible = false;
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
