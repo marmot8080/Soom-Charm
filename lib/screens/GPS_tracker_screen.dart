@@ -46,18 +46,38 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('속도초과'),
-          content: Text('속도가 너무 빠릅니다.\n좀 더 천천히 걸으세요.'),
-          actions: [
-            TextButton(
-              child: Text('확인'),
-              onPressed: () {
-                Navigator.of(context).pop(); // 다이얼로그 닫기
-                _isDialogVisible = false;
-              },
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  '속도초과',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  '속도가 너무 빠릅니다.\n좀 더 천천히 걸으세요.',
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _isDialogVisible = false;
+                    },
+                    child: Text('확인'),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );
