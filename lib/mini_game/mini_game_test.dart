@@ -1,4 +1,5 @@
 import 'package:flame/game.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:soom_charm/mini_game/components/mini_game_test_bg.dart';
 import 'package:soom_charm/mini_game/components/mini_game_test_ball.dart';
 import 'package:soom_charm/util/breath_analyzer.dart';
@@ -50,6 +51,7 @@ class MiniGameTest extends FlameGame {
     try {
       await _breathAnalyzer.startListening();
     } catch (e) {
+      debugPrint('Error: ${e}');
     }
   }
 }
