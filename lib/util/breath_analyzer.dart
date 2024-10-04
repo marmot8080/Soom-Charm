@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:fftea/fftea.dart';
 import 'package:record/record.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 
 class BreathAnalyzer {
@@ -20,10 +19,6 @@ class BreathAnalyzer {
   // 마이크 입력 시작
   Future<void> startListening() async {
     if (await _recorder.hasPermission()) {
-      // 앱의 내부 저장소 경로 가져오기
-      final tmpDir = await getTemporaryDirectory();
-      final filePath = '${tmpDir.path}/test.m4a';
-
       // Start recording to stream
       final stream = await _recorder.startStream(
         const RecordConfig(encoder: AudioEncoder.pcm16bits),

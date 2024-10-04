@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:soom_charm/util/GPS_tracker.dart';
 import 'package:soom_charm/widgets/on_off_button.dart';
 
