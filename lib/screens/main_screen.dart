@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'mini_game/mini_game_test.dart';
+import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -17,7 +17,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MiniGameTest()),
+                  MaterialPageRoute(builder: (context) => MiniGameScreenTest()),
                 );
               },
               child: Text('Mini Game'),
