@@ -128,6 +128,18 @@ class MainPage extends StatelessWidget {
                 ),
               ),
             ),
+            // 하단 네비게이션 아이콘들
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.settings, size: 40),
+                  Icon(Icons.shopping_cart, size: 40),
+                  Icon(Icons.bar_chart, size: 40),
+                ],
+              ),
+            ),
           ],
         ),
       ),
