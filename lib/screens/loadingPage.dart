@@ -38,6 +38,53 @@ class loadingPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
+              // 이미지 설명 부분
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Upper Chest\nBreathing',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 10),
+                        Image.asset(
+                          'assets/upper_chest.png', // 대체할 이미지 경로
+                          width: 100,
+                          height: 150,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Belly\nBreathing',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 10),
+                        Image.asset(
+                          'assets/belly_breathing.png', // 대체할 이미지 경로
+                          width: 100,
+                          height: 150,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
     ],
     ),
         ),
