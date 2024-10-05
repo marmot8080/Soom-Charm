@@ -14,6 +14,7 @@ class SoomCharmApp extends StatelessWidget {
   }
 }
 
+
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,36 @@ class MainPage extends StatelessWidget {
                 ),
               ),
             ),
-
+            // Start 버튼
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainPage()), // 페이지 이동
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 40),
+                    backgroundColor: Color(0xFFCBE3FA), // 버튼 색상
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    minimumSize: Size(120, 50),
+                  ),
+                  child: Text(
+                    'START',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
