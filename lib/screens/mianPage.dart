@@ -82,6 +82,22 @@ class MainPage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 20),
+            // 폐 이미지
+            Center(
+              child: CircleAvatar(
+                radius: 100,
+                backgroundColor: Colors.grey[300],
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Image.asset(
+                    'assets/lungs.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
+            ),
+
           ],
         ),
       ),
