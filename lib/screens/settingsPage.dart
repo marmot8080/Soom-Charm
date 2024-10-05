@@ -28,6 +28,41 @@ class settingsPage extends StatelessWidget {
           ),
         ],
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+        // 프로필 섹션
+        Row(
+        children: [
+        CircleAvatar(
+        radius: 40,
+          backgroundColor: Colors.grey[300],
+          child: Icon(Icons.person, size: 50, color: Colors.black),
+        ),
+        SizedBox(width: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '개똥이',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Row(
+              children: [
+                Text('프로필 수정'),
+                SizedBox(width: 8),
+                Icon(Icons.edit, size: 16),
+              ],
+            ),
+          ],
+        ),
+        ],
+      ),
+    ],
+    ),
+      ),
     );
   }
 }
