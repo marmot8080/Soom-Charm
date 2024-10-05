@@ -60,10 +60,45 @@ class settingsPage extends StatelessWidget {
         ),
         ],
       ),
+            SizedBox(height: 24),
+            // 슬라이더 섹션
+            _buildSliderSection('배경음'),
+            _buildSliderSection('효과음'),
+            _buildSliderSection('전체 소리'),
+            _buildSliderSection('감도 설정'),
+            SizedBox(height: 24),
     ],
+
     ),
       ),
     );
   }
 }
+
+
+// 슬라이더 섹션 UI 빌더 함수
+Widget _buildSliderSection(String title) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title, style: TextStyle(fontSize: 18)),
+            Icon(Icons.volume_up),
+          ],
+        ),
+        Slider(
+          value: 0.5,
+          onChanged: (double value) {},
+          activeColor: Colors.black,
+          inactiveColor: Colors.grey[300],
+        ),
+        Divider(), // 구분선 추가
+      ],
+    ),
+  );
+}
+
 
