@@ -39,7 +39,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MainPageSecond()), // MainPageSecond로 이동
+                  MaterialPageRoute(builder: (context) => MainPage()), // MainPageSecond로 이동
                 );
               },
 
