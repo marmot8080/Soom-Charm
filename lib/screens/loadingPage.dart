@@ -46,14 +46,14 @@ class _loadingPageState extends State<loadingPage>
     // 화면 크기 가져오기
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFCBE3FA), // 화면 전체에 하늘색 배경 적용
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // 상단 제목
             Container(
-              color: Color(0xFFCBE3FA), // 하늘색 배경
+              color: Color(0xFFCBE3FA), // 상단 배경색도 동일하게 적용
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
               child: Text(
