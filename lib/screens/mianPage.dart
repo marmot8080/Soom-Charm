@@ -106,7 +106,7 @@ class MainPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MainPage()), // 페이지 이동
+                      MaterialPageRoute(builder: (context) => GameStagePage()), // 페이지 이동
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -129,6 +129,24 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+// 새로운 페이지 StagePage 정의 나중에 새로운 페이지로 나눌 예정
+class GameStagePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('MainPage Second'),
+      ),
+      body: Center(
+        child: Text(
+          'This is the MainPageSecond!',
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
