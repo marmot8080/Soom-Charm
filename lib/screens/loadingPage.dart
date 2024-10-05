@@ -14,7 +14,31 @@ class SoomCharmApp extends StatelessWidget {
   }
 }
 
-class loadingPage extends StatelessWidget {
+class loadingPage extends StatefulWidget {
+  @override
+  _loadingPageState createState() => _loadingPageState();
+}
+
+class _loadingPageState extends State<loadingPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // AnimationController 초기화, 애니메이션 속도를 5초로 설정 (길게 설정할수록 느려짐)
+    _controller = AnimationController(
+      duration: const Duration(seconds: 5),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose(); // 애니메이션이 끝나면 컨트롤러 해제
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,19 +122,26 @@ class loadingPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            // 로딩 바
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: LinearProgressIndicator(
-                value: null, // 애니메이션을 위해 값은 null로 설정
-                backgroundColor: Colors.grey[300],
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[800]!),
-                minHeight: 8,
-              ),
-            ),
+            // 로딩 바 (애니메이션 속도 조정)
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return LinearProgressIndicator(
+              value: _controller.value,
+              backgroundColor: Colors.grey[300],
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.grey[800]!),
+              minHeight: 8,
+            );
+          },
+        ),
+      ),
           ],
         ),
       ),
     );
   }
 }
+
+
