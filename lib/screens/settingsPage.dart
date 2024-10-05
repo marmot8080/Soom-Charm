@@ -70,13 +70,13 @@ class settingsPage extends StatelessWidget {
               _buildSliderSection('효과음', size),
               _buildSliderSection('전체 소리', size),
               _buildSliderSection('감도 설정', size),
-              SizedBox(height: size.height * 0.02), // 간격을 줄임
+              SizedBox(height: size.height * 0.01), // 간격을 줄임
               // GPS 설정 섹션
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('GPS', style: TextStyle(fontSize: size.width * 0.04)), // 텍스트 크기 줄임
-                  Switch(value: true, onChanged: (bool value) {}),
+                  Text('GPS', style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
+                  Switch(value: true , onChanged: (bool value) {} ),
                 ],
               ),
             ],
@@ -89,13 +89,13 @@ class settingsPage extends StatelessWidget {
   // 슬라이더 섹션 UI 빌더 함수
   Widget _buildSliderSection(String title, Size size) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0), // 패딩을 줄임
+      padding: const EdgeInsets.symmetric(vertical: 3.0), // 패딩을 줄임
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: TextStyle(fontSize: size.width * 0.04)), // 텍스트 크기 줄임
+              Text(title, style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
               Icon(Icons.volume_up, size: size.width * 0.05),
             ],
           ),
@@ -106,7 +106,7 @@ class settingsPage extends StatelessWidget {
             inactiveColor: Colors.grey[300],
             // 슬라이더의 크기는 기본적으로 자동으로 조정됩니다.
           ),
-          Divider(height: 10), // 구분선의 높이를 줄임
+          Divider(height: 8), // 구분선의 높이를 줄임
         ],
       ),
     );
