@@ -17,6 +17,8 @@ class SoomCharmApp extends StatelessWidget {
 class loadingPage extends StatefulWidget {
   @override
   _loadingPageState createState() => _loadingPageState();
+
+
 }
 
 class _loadingPageState extends State<loadingPage>
@@ -41,6 +43,8 @@ class _loadingPageState extends State<loadingPage>
 
   @override
   Widget build(BuildContext context) {
+    // 화면 크기 가져오기
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -63,6 +67,7 @@ class _loadingPageState extends State<loadingPage>
               ),
             ),
             // 이미지 설명 부분
+            // 이미지 설명 부분
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -82,8 +87,8 @@ class _loadingPageState extends State<loadingPage>
                       SizedBox(height: 10),
                       Image.asset(
                         'assets/upper_chest.png', // 대체할 이미지 경로
-                        width: 100,
-                        height: 150,
+                        width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
+                        height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
                       ),
                     ],
                   ),
@@ -101,8 +106,8 @@ class _loadingPageState extends State<loadingPage>
                       SizedBox(height: 10),
                       Image.asset(
                         'assets/belly_breathing.png', // 대체할 이미지 경로
-                        width: 100,
-                        height: 150,
+                        width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
+                        height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
                       ),
                     ],
                   ),
