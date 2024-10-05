@@ -76,7 +76,16 @@ class settingsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('GPS', style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
-                  Switch(value: true , onChanged: (bool value) {} ),
+                  Transform.scale(
+                    scale: 0.8,  // 스위치 크기를 0.8배로 줄임
+                    child: Switch(
+                      value: true,
+                      onChanged: (bool value) {},
+                      activeTrackColor: Colors.grey,
+                      inactiveThumbColor: Colors.black,  // 비활성화 시 버튼 색상 (회색)
+                      inactiveTrackColor: Colors.grey,  // 비활성화 시 트랙 색상 (밝은 회색)
+                    ),
+                  ),
                 ],
               ),
             ],
