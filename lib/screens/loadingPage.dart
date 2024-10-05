@@ -85,6 +85,19 @@ class loadingPage extends StatelessWidget {
                   ],
                 ),
               ),
+              // 하단 설명 텍스트
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  '손을 배, 가슴에 올려 가슴은 움직이지 않고\n배가 움직이는 것을 느끼며 호흡해보세요!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
     ],
     ),
         ),
