@@ -67,49 +67,55 @@ class _loadingPageState extends State<loadingPage>
               ),
             ),
             // 이미지 설명 부분
-            // 이미지 설명 부분
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Upper Chest\nBreathing',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  Expanded(  // 첫 번째 이미지에 Expanded 적용
+                    child: Column(
+                      children: [
+                        Text(
+                          'Upper Chest\nBreathing',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10),
-                      Image.asset(
-                        'assets/upper_chest.png', // 대체할 이미지 경로
-                        width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
-                        height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
-                      ),
-                    ],
+                        SizedBox(height: 10),
+                        Image.asset(
+                          'assets/upper_chest.png', // 대체할 이미지 경로
+                          width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
+                          height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
+                          fit: BoxFit.contain, // 이미지 크기 맞추기
+                        ),
+                      ],
+                    ),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        'Belly\nBreathing',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                  SizedBox(width: 10),  // 두 이미지 간에 간격 추가
+                  Expanded(  // 두 번째 이미지에 Expanded 적용
+                    child: Column(
+                      children: [
+                        Text(
+                          'Belly\nBreathing',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(height: 10),
-                      Image.asset(
-                        'assets/belly_breathing.png', // 대체할 이미지 경로
-                        width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
-                        height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
-                      ),
-                    ],
+                        SizedBox(height: 10),
+                        Image.asset(
+                          'assets/belly_breathing.png', // 대체할 이미지 경로
+                          width: size.width * 0.4, // 화면 너비의 40%로 이미지 크기 조정
+                          height: size.height * 0.25, // 화면 높이의 25%로 이미지 크기 조정
+                          fit: BoxFit.contain, // 이미지 크기 맞추기
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
