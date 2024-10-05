@@ -57,9 +57,31 @@ class MainPage extends StatelessWidget {
                 ],
               ),
             ),
-
-
-
+            // 폐 상태와 텍스트 설명
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: RichText(
+                textAlign: TextAlign.left,
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                  children: [
+                    TextSpan(text: '폐 단련 5일차..\n호흡근이 '),
+                    TextSpan(
+                      text: '5%',
+                      style: TextStyle(
+                        color: Color(0xFFFF6D7A), // 5% 색상 수정
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(text: ' 증가했습니다\n오늘도 화이팅!'),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
