@@ -67,9 +67,19 @@ class settingsPage extends StatelessWidget {
             _buildSliderSection('전체 소리'),
             _buildSliderSection('감도 설정'),
             SizedBox(height: 24),
+            // GPS 설정 섹션
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('GPS', style: TextStyle(fontSize: 18)),
+                Switch(value: true, onChanged: (bool value) {}),
+              ],
+            ),
     ],
 
+
     ),
+
       ),
     );
   }
