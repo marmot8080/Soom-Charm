@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
-import 'mianPage.dart';
+import 'mainPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
