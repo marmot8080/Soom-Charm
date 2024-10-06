@@ -14,7 +14,6 @@ class SoomCharmApp extends StatelessWidget {
   }
 }
 
-
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,8 @@ class MainPage extends StatelessWidget {
           children: [
             // 상단 심장 아이콘과 타이틀 부분
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -47,9 +47,12 @@ class MainPage extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.favorite, color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
-                        Icon(Icons.favorite, color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
-                        Icon(Icons.favorite, color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
+                        Icon(Icons.favorite,
+                            color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
+                        Icon(Icons.favorite,
+                            color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
+                        Icon(Icons.favorite,
+                            color: Color(0xFFFF6D7A), size: 30), // 하트 색상 수정
                         SizedBox(width: 4),
                         Icon(Icons.add, color: Colors.black, size: 30),
                       ],
@@ -105,7 +108,8 @@ class MainPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => GameStagePage()), // 페이지 이동
+                      MaterialPageRoute(
+                          builder: (context) => GameStagePage()), // 페이지 이동
                     );
                   },
                   style: ElevatedButton.styleFrom(
