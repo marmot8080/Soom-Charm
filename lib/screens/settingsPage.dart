@@ -9,7 +9,8 @@ class settingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('설정', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        title: Text('설정',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -43,7 +44,8 @@ class settingsPage extends StatelessWidget {
                   CircleAvatar(
                     radius: size.width * 0.08, // 크기를 줄임
                     backgroundColor: Colors.grey[300],
-                    child: Icon(Icons.person, size: size.width * 0.12, color: Colors.black),
+                    child: Icon(Icons.person,
+                        size: size.width * 0.12, color: Colors.black),
                   ),
                   SizedBox(width: 16),
                   Column(
@@ -51,11 +53,15 @@ class settingsPage extends StatelessWidget {
                     children: [
                       Text(
                         '개똥이',
-                        style: TextStyle(fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: size.width * 0.05,
+                            fontWeight: FontWeight.bold),
                       ),
                       Row(
                         children: [
-                          Text('프로필 수정', style: TextStyle(fontSize: size.width * 0.035)), // 텍스트 크기 줄임
+                          Text('프로필 수정',
+                              style: TextStyle(
+                                  fontSize: size.width * 0.035)), // 텍스트 크기 줄임
                           SizedBox(width: 8),
                           Icon(Icons.edit, size: size.width * 0.04),
                         ],
@@ -75,15 +81,17 @@ class settingsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('GPS', style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
+                  Text('GPS',
+                      style:
+                          TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
                   Transform.scale(
-                    scale: 0.8,  // 스위치 크기를 0.8배로 줄임
+                    scale: 0.8, // 스위치 크기를 0.8배로 줄임
                     child: Switch(
                       value: true,
                       onChanged: (bool value) {},
                       activeTrackColor: Colors.grey,
-                      inactiveThumbColor: Colors.black,  // 비활성화 시 버튼 색상 (회색)
-                      inactiveTrackColor: Colors.grey,  // 비활성화 시 트랙 색상 (밝은 회색)
+                      inactiveThumbColor: Colors.black, // 비활성화 시 버튼 색상 (회색)
+                      inactiveTrackColor: Colors.grey, // 비활성화 시 트랙 색상 (밝은 회색)
                     ),
                   ),
                 ],
@@ -104,7 +112,8 @@ class settingsPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
+              Text(title,
+                  style: TextStyle(fontSize: size.width * 0.03)), // 텍스트 크기 줄임
               Icon(Icons.volume_up, size: size.width * 0.05),
             ],
           ),
