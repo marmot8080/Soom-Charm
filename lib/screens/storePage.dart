@@ -10,7 +10,8 @@ class storePage extends StatelessWidget {
         elevation: 0,
         title: Text(
           '상점',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
@@ -38,10 +39,14 @@ class storePage extends StatelessWidget {
                     children: [
                       Text(
                         '5000', // 보유 코인 수
-                        style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold ),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width: 8),
-                      Icon(Icons.monetization_on, color: Color(0xFFFFC648), size: 24), // 코인 아이콘
+                      Icon(Icons.monetization_on,
+                          color: Color(0xFFFFC648), size: 24), // 코인 아이콘
                     ],
                   ),
                 ),
@@ -53,7 +58,7 @@ class storePage extends StatelessWidget {
               child: GridView.count(
                 crossAxisCount: 2, // 한 줄에 두 개씩
                 crossAxisSpacing: 40, // 각 아이템 상자간의 가로 간격 늘리기
-                mainAxisSpacing: 0.5,  // 각 아이템 상자간의 세로 간격 줄이기
+                mainAxisSpacing: 0.5, // 각 아이템 상자간의 세로 간격 줄이기
                 childAspectRatio: 1.5, // 가로 세로 비율을 0.7로 설정하여 가로 길이 줄이기
                 children: [
                   _buildItem(3, null, 300), // 하트 3개
@@ -79,7 +84,10 @@ class storePage extends StatelessWidget {
               ),
               child: Text(
                 '돈벌러 가기',
-                style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold ),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -95,7 +103,8 @@ class storePage extends StatelessWidget {
       children: [
         // 아이템 박스
         Container(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30), // 상자 내부 세로 여백 증가
+          padding: EdgeInsets.symmetric(
+              vertical: 30, horizontal: 30), // 상자 내부 세로 여백 증가
           width: 160,
           decoration: BoxDecoration(
             color: Color(0xFFCBEFFA), // 색상을 CBEFFA로 변경
@@ -109,14 +118,16 @@ class storePage extends StatelessWidget {
                 children: [
                   ...List.generate(
                     heartCount, // heartCount만큼 하트 아이콘 생성
-                        (index) => Icon(Icons.favorite, color: Color(0xFFFF6D7A), size: 24),
+                    (index) => Icon(Icons.favorite,
+                        color: Color(0xFFFF6D7A), size: 24),
                   ),
                   if (multiple != null) // X와 숫자 텍스트 추가
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Text(
                         'X $multiple',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                 ],
@@ -129,7 +140,8 @@ class storePage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.monetization_on, color: Color(0xFFFFC648), size: 24), // 코인 아이콘
+            Icon(Icons.monetization_on,
+                color: Color(0xFFFFC648), size: 24), // 코인 아이콘
             SizedBox(width: 4),
             Text(
               '$price',
