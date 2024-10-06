@@ -94,7 +94,7 @@ class MainPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
                   child: Image.asset(
-                    '../assets/images/lungs.png',
+                    'assets/images/lungs.png',
                     fit: BoxFit.cover,
                   ),
                 ),
