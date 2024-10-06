@@ -55,10 +55,33 @@ class storePage extends StatelessWidget {
                 crossAxisSpacing: 40, // 각 아이템 상자간의 가로 간격 늘리기
                 mainAxisSpacing: 0.5,  // 각 아이템 상자간의 세로 간격 줄이기
                 childAspectRatio: 1.5, // 가로 세로 비율을 0.7로 설정하여 가로 길이 줄이기
-
+                children: [
+                  _buildItem(3, null, 300), // 하트 3개
+                  _buildItem(1, 5, 450), // 하트 1개 X 5
+                  _buildItem(1, 10, 900), // 하트 1개 X 10
+                  _buildItem(1, 15, 1350), // 하트 1개 X 15
+                  _buildItem(1, 20, 1800), // 하트 1개 X 20
+                  _buildItem(1, 25, 2000), // 하트 1개 X 25
+                ],
               ),
             ),
-
+            SizedBox(height: 50),
+            ElevatedButton(
+              onPressed: () {
+                // 돈벌러 가기 기능 추가 필요
+              },
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                backgroundColor: Color(0xFFCBE3FA),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              child: Text(
+                '돈벌러 가기',
+                style: TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold ),
+              ),
+            ),
           ],
         ),
       ),
@@ -78,8 +101,28 @@ class storePage extends StatelessWidget {
             color: Color(0xFFCBEFFA), // 색상을 CBEFFA로 변경
             borderRadius: BorderRadius.circular(20), // 모서리를 더 둥글게
           ),
-
-
+          child: Column(
+            children: [
+              // 하트 아이콘 생성
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(
+                    heartCount, // heartCount만큼 하트 아이콘 생성
+                        (index) => Icon(Icons.favorite, color: Color(0xFFFF6D7A), size: 24),
+                  ),
+                  if (multiple != null) // X와 숫자 텍스트 추가
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: Text(
+                        'X $multiple',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
         ),
         SizedBox(height: 8), // 간격 추가
         // 가격을 표시하는 부분
