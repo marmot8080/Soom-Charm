@@ -30,7 +30,23 @@ class recorderGamePage extends StatelessWidget {
               height: 485, // 리코더 사진의 높이를 400으로 설정하여 더 크게
             ),
           ),
-      ]),
+          // 바람 아이콘을 화면 하단 가운데에 배치
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 30.0), // 아래쪽 여백 추가
+              child: Transform.rotate(
+                angle: 90 * 3.1415927 / 180, // 90도 회전 (라디안 단위로 변환)
+                child: Icon(
+                  Icons.air,
+                  size: 80,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
