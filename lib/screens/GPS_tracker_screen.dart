@@ -91,6 +91,7 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF6CB7FF),
       appBar: AppBar(
         title: Text('GPS Tracker Screen'),
       ),
@@ -104,7 +105,7 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
             SizedBox(height: 20),
             Text(
               '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ],
         ),
