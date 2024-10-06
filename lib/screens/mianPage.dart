@@ -83,24 +83,23 @@ class MainPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
             // 폐 이미지
             Center(
               child: CircleAvatar(
-                radius: 100,
+                radius: 130,
                 backgroundColor: Colors.grey[300],
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
                   child: Image.asset(
-                    'assets/lungs.png',
-                    fit: BoxFit.contain,
+                    '../assets/images/lungs.png',
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
             // Start 버튼
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
