@@ -75,7 +75,7 @@ class _loadingPageState extends State<loadingPage>
                       child: Column(
                         children: [
                           Image.asset(
-                            '../assets/images/belly_breathing.png',
+                            'assets/images/belly_breathing.png',
                             width: size.width * 0.7, // 화면 너비의 70%로 이미지 크기 조정
                             height: size.height * 0.50, // 화면 높이의 50%로 이미지 크기 조정
                             fit: BoxFit.contain, // 이미지 크기 맞추기
