@@ -36,26 +36,6 @@ class MainScreen extends StatelessWidget {
               },
               child: Text('GPS tracker'),
             ), SizedBox(height: 20), // 버튼 간 간격 조정
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MainPage()), // MainPage로 이동
-                );
-              },
-
-              child: Text('MainPage'),),
-            
-            , SizedBox(height: 20), // 버튼 간 간격 조정
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => settingsPage()),
-                );
-              },
-              child: Text('settingsPage'),),
-            ),
               SizedBox(height: 20), // 버튼 간 간격 조정
               ElevatedButton(
                 // MainPage에서 버튼 클릭 시 페이지 이동
@@ -67,6 +47,26 @@ class MainScreen extends StatelessWidget {
                 },
                 child: Text('loadingPage'),
               ),
+            SizedBox(height: 20), // 버튼 간 간격 조정
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage()), // MainPage로 이동
+                );
+              },
+
+              child: Text('MainPage'),),
+            SizedBox(height: 20), // 버튼 간 간격 조정
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => settingsPage()),
+                );
+              },
+              child: Text('settingsPage'),),
             ]
         ),
       ),
