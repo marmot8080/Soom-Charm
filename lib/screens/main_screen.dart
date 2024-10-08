@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
 import 'package:soom_charm/screens/storePage.dart';
+import 'package:soom_charm/screens/settingsPage.dart';
+import 'mainPage.dart';
+import 'loadingPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -33,8 +37,20 @@ class MainScreen extends StatelessWidget {
               },
               child: Text('GPS tracker'),
             ),
+=======
+            ), SizedBox(height: 20), // 버튼 간 간격 조정
+              SizedBox(height: 20), // 버튼 간 간격 조정
+              ElevatedButton(
+                // MainPage에서 버튼 클릭 시 페이지 이동
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => loadingPage()),
+                  );
+                },
+                child: Text('loadingPage'),
+              ),
             SizedBox(height: 20), // 버튼 간 간격 조정
-
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -45,8 +61,24 @@ class MainScreen extends StatelessWidget {
               child: Text('storePage'),
             ),
           ],
+                  MaterialPageRoute(builder: (context) => MainPage()), // MainPage로 이동
+                );
+              },
+
+              child: Text('MainPage'),),
+            SizedBox(height: 20), // 버튼 간 간격 조정
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => settingsPage()),
+                );
+              },
+              child: Text('settingsPage'),),
+            ]
         ),
       ),
     );
   }
+
 }
