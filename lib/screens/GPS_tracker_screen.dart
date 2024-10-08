@@ -94,32 +94,43 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF6CB7FF),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            DistanceBar(
-                value: _gpsTracker.totalDistance.toInt() % _maxDistance / _maxDistance
-            ),
-            Align(
-              alignment: Alignment.centerRight * 0.8,
-              child: Text(
-                '${(_gpsTracker.totalDistance % _maxDistance / _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-            ),
-            SizedBox(height: 160),
-            OnOffButton(
-              onToggle: _handleToggle,
-            ),
-            SizedBox(height: 20),
-            Text(
-              '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
-            ),
-            SizedBox(height: 120),
-          ],
-        ),
+      body: SafeArea(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 5),
+                Align(
+                  alignment: Alignment.centerLeft * 0.9,
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        },
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: 40)
+                  ),
+                ),
+                SizedBox(height: 10),
+                DistanceBar(
+                    value: _gpsTracker.totalDistance.toInt() % _maxDistance / _maxDistance
+                ),
+                Align(
+                  alignment: Alignment.centerRight * 0.8,
+                  child: Text(
+                    '${(_gpsTracker.totalDistance % _maxDistance / _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
+                SizedBox(height: 160),
+                OnOffButton(
+                  onToggle: _handleToggle,
+                ),
+                SizedBox(height: 30),
+                Text(
+                  '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
+                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+                SizedBox(height: 120),
+              ],
+          ),
       ),
     );
   }
