@@ -37,9 +37,18 @@ class MainScreen extends StatelessWidget {
                 );
               },
               child: Text('GPS tracker'),
-            ), 
-     
-          SizedBox(height: 20), // 버튼 간 간격 조정
+            ),
+            SizedBox(height: 20), // 버튼 간 간격 조정
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage()),
+                );
+              },
+              child: Text('mainPage'),
+            ),
+            SizedBox(height: 20), // 버튼 간 간격 조정
           ElevatedButton(
             // MainPage에서 버튼 클릭 시 페이지 이동
             onPressed: () {
@@ -71,7 +80,6 @@ class MainScreen extends StatelessWidget {
             child: Text('storePage'),
           ),
           SizedBox(height: 20), // 버튼 간 간격 조정
-        ]),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -81,8 +89,8 @@ class MainScreen extends StatelessWidget {
               },
               child: Text('RecorderGame'),
             ),
-          ],
-        ),
+        ],
+      ),
       ),
     );
   }

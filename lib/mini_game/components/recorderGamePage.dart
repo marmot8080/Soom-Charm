@@ -26,7 +26,7 @@ class recorderGamePage extends StatelessWidget {
           // 리코더 이미지를 화면 중앙에 배치, 크기 키움
           Center(
             child: Image.asset(
-              '../assets/images/recorder.png', // 리코더 이미지 경로
+              'assets/images/recorder.png', // 리코더 이미지 경로
               height: 485, // 리코더 사진의 높이를 400으로 설정하여 더 크게
             ),
           ),
