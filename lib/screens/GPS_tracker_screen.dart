@@ -119,7 +119,7 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-                SizedBox(height: 160),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                 OnOffButton(
                   onToggle: _handleToggle,
                 ),
@@ -128,7 +128,6 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
                   '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
-                SizedBox(height: 120),
               ],
           ),
       ),
