@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(SoomCharmApp());
-}
-
-class SoomCharmApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: loadingPage(),
-    );
-  }
-}
-
-class loadingPage extends StatefulWidget {
+class LoadingPage extends StatefulWidget {
   @override
   _loadingPageState createState() => _loadingPageState();
 }
 
-class _loadingPageState extends State<loadingPage>
+class _loadingPageState extends State<LoadingPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class recorderGamePage extends StatelessWidget {
+class RecorderGamePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

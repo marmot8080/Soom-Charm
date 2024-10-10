@@ -1,8 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:soom_charm/mini_game/components/mini_game_test_bg.dart';
-import 'package:soom_charm/mini_game/components/mini_game_test_ball.dart';
-import 'package:soom_charm/util/breath_analyzer.dart';
+import 'package:soom_charm/mini_game/components/MiniGameTestBg.dart';
+import 'package:soom_charm/mini_game/components/MiniGameTestBall.dart';
+import 'package:soom_charm/util/BreathAnalyzer.dart';
 
 class MiniGameTest extends FlameGame {
   final MiniGameTestBg _bg = MiniGameTestBg();

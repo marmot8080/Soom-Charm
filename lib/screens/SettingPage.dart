@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class settingsPage extends StatelessWidget {
+class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 화면 크기 정보 가져오기
