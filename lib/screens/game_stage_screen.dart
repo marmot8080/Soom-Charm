@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
 import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
+import 'package:soom_charm/widgets/game_stage_button.dart';
 
 class GameStageScreen extends StatefulWidget {
   @override
@@ -64,32 +65,17 @@ class _GameStageScreen extends State<GameStageScreen> {
             Center(
               child: Column(
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MiniGameScreenTest()), // 차후 페이지 변경
-                      );
-                    },
-                    child: Image.asset("assets/images/lungs.png"), // 차후 이미지 변경
+                  GameStageButton(
+                      imagePath: "assets/images/lungs.png",
+                      targetPage: MiniGameScreenTest(),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MiniGameScreenTest()), // 차후 페이지 변경
-                      );
-                    },
-                    child: Image.asset("assets/images/lungs.png"), // 차후 이미지 변경
+                  GameStageButton(
+                    imagePath: "assets/images/lungs.png",
+                    targetPage: MiniGameScreenTest(),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MiniGameScreenTest()), // 차후 페이지 변경
-                      );
-                    },
-                    child: Image.asset("assets/images/lungs.png"), // 차후 이미지 변경
+                  GameStageButton(
+                    imagePath: "assets/images/lungs.png",
+                    targetPage: MiniGameScreenTest(),
                   ),
                 ],
               )
