@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/util/GPS_tracker.dart';
 import 'package:soom_charm/widgets/on_off_button.dart';
+import 'package:soom_charm/widgets/distance_bar.dart';
 
 class GPSTrackerScreen extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class GPSTrackerScreen extends StatefulWidget {
 class _GPSTrackerScreen extends State<GPSTrackerScreen> {
   final GPSTracker _gpsTracker = GPSTracker();
   bool _isDialogVisible = false;
+  double _maxDistance = 3.0; // 포인트 획득 기준 거리
 
   @override
   void initState() {
@@ -91,23 +93,43 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('GPS Tracker Screen'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OnOffButton(
-              onToggle: _handleToggle,
-            ),
-            SizedBox(height: 20),
-            Text(
-              '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
+      backgroundColor: Color(0xFF6CB7FF),
+      body: SafeArea(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 5),
+                Align(
+                  alignment: Alignment.centerLeft * 0.9,
+                  child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        },
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: 40)
+                  ),
+                ),
+                SizedBox(height: 10),
+                DistanceBar(
+                    value: _gpsTracker.totalDistance % _maxDistance / _maxDistance
+                ),
+                Align(
+                  alignment: Alignment.centerRight * 0.8,
+                  child: Text(
+                    '${(_gpsTracker.totalDistance % _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                OnOffButton(
+                  onToggle: _handleToggle,
+                ),
+                SizedBox(height: 30),
+                Text(
+                  '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
+                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ],
+          ),
       ),
     );
   }

@@ -24,9 +24,14 @@ class _OnOffButtonState extends State<OnOffButton> {
     return ElevatedButton(
       onPressed: toggleButton,
       style: ElevatedButton.styleFrom(
-        backgroundColor: isOn ? Colors.red : Colors.green,
+        backgroundColor: isOn ? Color(0xFF77BCFF) : Color(0xFFA3D2FF),
         shape: CircleBorder(),
         padding: EdgeInsets.all(100),
+        elevation: 12,
+        side: BorderSide(
+          color: isOn ? Color(0xFFA3D2FF) : Color(0xFF77BCFF),
+          width: 3
+        )
       ),
       child: Text(
         isOn ? 'STOP' : 'START',
