@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _pages = [
     GPSTrackerScreen(),
     GameStageScreen(),
-    settingsPage()
+    SettingsPage()
   ];
 
   @override

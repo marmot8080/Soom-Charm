@@ -92,7 +92,7 @@ class _GameStageScreen extends State<GameStageScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => settingsPage()), // 차후 세팅 페이지 이동으로 변경
+                          MaterialPageRoute(builder: (context) => SettingsPage()), // 차후 세팅 페이지 이동으로 변경
                         );
                       },
                       icon: Icon(Icons.settings, color: Colors.black, size: 40)
@@ -101,7 +101,7 @@ class _GameStageScreen extends State<GameStageScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => storePage()), // 차후 상점 페이지 이동으로 변경
+                          MaterialPageRoute(builder: (context) => StorePage()), // 차후 상점 페이지 이동으로 변경
                         );
                       },
                       icon: Icon(Icons.shopping_cart, color: Colors.black, size: 40)

@@ -4,8 +4,8 @@ import 'package:soom_charm/screens/GameStagePage.dart';
 import 'package:soom_charm/screens/mini_game/RecorderGamePage.dart';
 import 'package:soom_charm/screens/StorePage.dart';
 import 'package:soom_charm/screens/SettingPage.dart';
-import 'MainPage.dart';
-import 'LoadingPage.dart';
+import 'package:soom_charm/screens/MainPage.dart';
+import 'package:soom_charm/screens/LoadingPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -54,7 +54,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => loadingPage()),
+                MaterialPageRoute(builder: (context) => LoadingPage()),
               );
             },
             child: Text('loadingPage'),
@@ -64,7 +64,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => settingsPage()),
+                MaterialPageRoute(builder: (context) => SettingsPage()),
               );
             },
             child: Text('settingsPage'),
@@ -74,7 +74,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => storePage()),
+                MaterialPageRoute(builder: (context) => StorePage()),
               );
             },
             child: Text('storePage'),
@@ -84,7 +84,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => recorderGamePage()),
+                  MaterialPageRoute(builder: (context) => RecorderGamePage()),
                 );
               },
               child: Text('RecorderGame'),
