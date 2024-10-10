@@ -110,12 +110,12 @@ class _GPSTrackerScreen extends State<GPSTrackerScreen> {
                 ),
                 SizedBox(height: 10),
                 DistanceBar(
-                    value: _gpsTracker.totalDistance.toInt() % _maxDistance / _maxDistance
+                    value: _gpsTracker.totalDistance % _maxDistance / _maxDistance
                 ),
                 Align(
                   alignment: Alignment.centerRight * 0.8,
                   child: Text(
-                    '${(_gpsTracker.totalDistance % _maxDistance / _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
+                    '${(_gpsTracker.totalDistance % _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
