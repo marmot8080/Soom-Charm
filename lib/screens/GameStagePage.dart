@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soom_charm/screens/GPSTrackerPage.dart';
 import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
 import 'package:soom_charm/widgets/GameStageButton.dart';
-import 'package:soom_charm/screens/SettingPage.dart';
 import 'package:soom_charm/screens/StorePage.dart';
 
 class GameStageScreen extends StatefulWidget {
@@ -17,8 +15,6 @@ class _GameStageScreen extends State<GameStageScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             // 상단 심장 아이콘과 타이틀 부분
             Padding(
@@ -53,7 +49,7 @@ class _GameStageScreen extends State<GameStageScreen> {
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => GPSTrackerScreen()), // 차후 상점 페이지 이동으로 변경
+                                MaterialPageRoute(builder: (context) => StorePage()),
                               );
                             },
                             icon: Icon(Icons.add, color: Colors.black, size: 30)
@@ -64,59 +60,53 @@ class _GameStageScreen extends State<GameStageScreen> {
                 ],
               ),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
             Center(
               child: Column(
                 children: [
-                  GameStageButton(
-                      imagePath: "assets/images/lungs.png",
-                      targetPage: MiniGameScreenTest(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                    ],
                   ),
-                  GameStageButton(
-                    imagePath: "assets/images/lungs.png",
-                    targetPage: MiniGameScreenTest(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                    ],
                   ),
-                  GameStageButton(
-                    imagePath: "assets/images/lungs.png",
-                    targetPage: MiniGameScreenTest(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameScreenTest(),
+                      ),
+                    ],
                   ),
                 ],
               )
-            ),
-            // 하단 네비게이션 아이콘들
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SettingsPage()), // 차후 세팅 페이지 이동으로 변경
-                        );
-                      },
-                      icon: Icon(Icons.settings, color: Colors.black, size: 40)
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => StorePage()), // 차후 상점 페이지 이동으로 변경
-                        );
-                      },
-                      icon: Icon(Icons.shopping_cart, color: Colors.black, size: 40)
-                  ),
-                  IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => GPSTrackerScreen()), // 차후 기록 페이지 이동으로 변경
-                        );
-                      },
-                      icon: Icon(Icons.bar_chart, color: Colors.black, size: 40)
-                  ),
-                ],
-              ),
             ),
           ],
         ),
