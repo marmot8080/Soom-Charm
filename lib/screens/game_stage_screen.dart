@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
 import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
 import 'package:soom_charm/widgets/game_stage_button.dart';
+import 'package:soom_charm/screens/settingsPage.dart';
+import 'package:soom_charm/screens/storePage.dart';
 
 class GameStageScreen extends StatefulWidget {
   @override
@@ -90,7 +92,7 @@ class _GameStageScreen extends State<GameStageScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => GPSTrackerScreen()), // 차후 세팅 페이지 이동으로 변경
+                          MaterialPageRoute(builder: (context) => settingsPage()), // 차후 세팅 페이지 이동으로 변경
                         );
                       },
                       icon: Icon(Icons.settings, color: Colors.black, size: 40)
@@ -99,7 +101,7 @@ class _GameStageScreen extends State<GameStageScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => GPSTrackerScreen()), // 차후 상점 페이지 이동으로 변경
+                          MaterialPageRoute(builder: (context) => storePage()), // 차후 상점 페이지 이동으로 변경
                         );
                       },
                       icon: Icon(Icons.shopping_cart, color: Colors.black, size: 40)
