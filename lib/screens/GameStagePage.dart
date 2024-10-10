@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:soom_charm/screens/GPS_tracker_screen.dart';
-import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
-import 'package:soom_charm/widgets/game_stage_button.dart';
-import 'package:soom_charm/screens/settingsPage.dart';
-import 'package:soom_charm/screens/storePage.dart';
+import 'package:soom_charm/screens/GPSTrackerPage.dart';
+import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
+import 'package:soom_charm/widgets/GameStageButton.dart';
+import 'package:soom_charm/screens/SettingPage.dart';
+import 'package:soom_charm/screens/StorePage.dart';
 
 class GameStageScreen extends StatefulWidget {
   @override

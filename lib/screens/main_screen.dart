@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soom_charm/screens/GPS_tracker_screen.dart';
-import 'package:soom_charm/screens/game_stage_screen.dart';
-import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
-import 'package:soom_charm/screens/mini_game/recorderGamePage.dart';
-import 'package:soom_charm/screens/storePage.dart';
-import 'package:soom_charm/screens/settingsPage.dart';
-import 'mainPage.dart';
-import 'loadingPage.dart';
+import 'package:soom_charm/screens/GPSTrackerPage.dart';
+import 'package:soom_charm/screens/GameStagePage.dart';
+import 'package:soom_charm/screens/mini_game/RecorderGamePage.dart';
+import 'package:soom_charm/screens/StorePage.dart';
+import 'package:soom_charm/screens/SettingPage.dart';
+import 'MainPage.dart';
+import 'LoadingPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override

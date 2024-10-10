@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soom_charm/util/GPS_tracker.dart';
-import 'package:soom_charm/widgets/on_off_button.dart';
-import 'package:soom_charm/widgets/distance_bar.dart';
+import 'package:soom_charm/util/GPSTracker.dart';
+import 'package:soom_charm/widgets/OnOffButton.dart';
+import 'package:soom_charm/widgets/DistanceBar.dart';
 
 class GPSTrackerScreen extends StatefulWidget {
   @override
