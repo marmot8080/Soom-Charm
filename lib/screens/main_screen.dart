@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
 import 'package:soom_charm/screens/GPS_tracker_screen.dart';
-import '../mini_game/components/recorderGamePage.dart';
+import 'package:soom_charm/screens/mini_game/recorderGamePage.dart';
 import 'package:soom_charm/screens/storePage.dart';
 import 'package:soom_charm/screens/settingsPage.dart';
 import 'mainPage.dart';
