@@ -2,12 +2,12 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:soom_charm/mini_game/MiniGameTest.dart';
 
-class MiniGameScreenTest extends StatefulWidget {
+class MiniGameTestPage extends StatefulWidget {
   @override
-  _MiniGameScreenTestState createState() => _MiniGameScreenTestState();
+  _MiniGameTestPage createState() => _MiniGameTestPage();
 }
 
-class _MiniGameScreenTestState extends State<MiniGameScreenTest> {
+class _MiniGameTestPage extends State<MiniGameTestPage> {
   @override
   void initState() {
     super.initState();

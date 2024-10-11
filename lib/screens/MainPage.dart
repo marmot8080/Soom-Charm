@@ -1,3 +1,4 @@
+import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/GPSTrackerPage.dart';
 import 'package:soom_charm/screens/GameStagePage.dart';
@@ -12,8 +13,8 @@ class _MainPageState extends State<MainPage> {
   var _index = 1;
 
   List<Widget> _pages = [
-    GPSTrackerScreen(),
-    GameStageScreen(),
+    GPSTrackerPage(),
+    GameStagePage(),
     SettingsPage()
   ];
 

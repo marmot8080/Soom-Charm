@@ -3,12 +3,12 @@ import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
 import 'package:soom_charm/widgets/GameStageButton.dart';
 import 'package:soom_charm/screens/StorePage.dart';
 
-class GameStageScreen extends StatefulWidget {
+class GameStagePage extends StatefulWidget {
   @override
-  _GameStageScreen createState() => _GameStageScreen();
+  _GameStagePage createState() => _GameStagePage();
 }
 
-class _GameStageScreen extends State<GameStageScreen> {
+class _GameStagePage extends State<GameStagePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,25 +69,11 @@ class _GameStageScreen extends State<GameStageScreen> {
                     children: [
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
+                        targetPage: MiniGameTestPage(),
                       ),
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GameStageButton(
-                        imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
-                      ),
-                      GameStageButton(
-                        imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
+                        targetPage: MiniGameTestPage(),
                       ),
                     ],
                   ),
@@ -97,11 +83,25 @@ class _GameStageScreen extends State<GameStageScreen> {
                     children: [
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
+                        targetPage: MiniGameTestPage(),
                       ),
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameScreenTest(),
+                        targetPage: MiniGameTestPage(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameTestPage(),
+                      ),
+                      GameStageButton(
+                        imagePath: "assets/images/lungs.png",
+                        targetPage: MiniGameTestPage(),
                       ),
                     ],
                   ),

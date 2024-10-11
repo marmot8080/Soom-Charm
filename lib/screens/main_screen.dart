@@ -23,7 +23,7 @@ class MainScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GameStageScreen()),
+                      builder: (context) => GameStagePage()),
                 );
               },
               child: Text('Mini Game'),
@@ -33,7 +33,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GPSTrackerScreen()),
+                  MaterialPageRoute(builder: (context) => GPSTrackerPage()),
                 );
               },
               child: Text('GPS tracker'),
