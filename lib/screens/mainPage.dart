@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() {
+/*void main() {
   runApp(SoomCharmApp());
 }
 
@@ -13,10 +13,11 @@ class SoomCharmApp extends StatelessWidget {
     );
   }
 }
-
+*/
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
