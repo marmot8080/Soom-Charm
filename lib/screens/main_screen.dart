@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soom_charm/screens/GPS_tracker_screen.dart';
-import 'package:soom_charm/screens/game_stage_screen.dart';
-import 'package:soom_charm/screens/mini_game/mini_game_screen_test.dart';
-import 'package:soom_charm/screens/mini_game/recorderGamePage.dart';
-import 'package:soom_charm/screens/storePage.dart';
-import 'package:soom_charm/screens/settingsPage.dart';
-import 'mainPage.dart';
-import 'loadingPage.dart';
+import 'package:soom_charm/screens/GPSTrackerPage.dart';
+import 'package:soom_charm/screens/GameStagePage.dart';
+import 'package:soom_charm/screens/mini_game/RecorderGamePage.dart';
+import 'package:soom_charm/screens/StorePage.dart';
+import 'package:soom_charm/screens/SettingPage.dart';
+import 'package:soom_charm/screens/MainPage.dart';
+import 'package:soom_charm/screens/LoadingPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -24,7 +23,7 @@ class MainScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => GameStageScreen()),
+                      builder: (context) => GameStagePage()),
                 );
               },
               child: Text('Mini Game'),
@@ -34,7 +33,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => GPSTrackerScreen()),
+                  MaterialPageRoute(builder: (context) => GPSTrackerPage()),
                 );
               },
               child: Text('GPS tracker'),
@@ -55,7 +54,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => loadingPage()),
+                MaterialPageRoute(builder: (context) => LoadingPage()),
               );
             },
             child: Text('loadingPage'),
@@ -65,7 +64,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => settingsPage()),
+                MaterialPageRoute(builder: (context) => SettingsPage()),
               );
             },
             child: Text('settingsPage'),
@@ -75,7 +74,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => storePage()),
+                MaterialPageRoute(builder: (context) => StorePage()),
               );
             },
             child: Text('storePage'),
@@ -85,7 +84,7 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => recorderGamePage()),
+                  MaterialPageRoute(builder: (context) => RecorderGamePage()),
                 );
               },
               child: Text('RecorderGame'),
