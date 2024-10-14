@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "666083983625",
+    "project_id": "hellotest-d9962",
+    "storage_bucket": "hellotest-d9962.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666083983625:android:2296329066d8a5cfed53d8",
+        "android_client_info": {
+          "package_name": "com.projecting.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAZpe9XmeZHhYiEDwleUvaA2HX7_AFTX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
