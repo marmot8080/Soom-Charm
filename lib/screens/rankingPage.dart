@@ -1,281 +1,116 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(rankingPage());
+}
+
 class rankingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 77.20,
-          height: 162.30,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(color: Colors.white),
-          child: Stack(
-            children: [
-              Positioned(
-                left: 4,
-                top: 138,
-                child: Container(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: double.infinity,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const SizedBox(width: 11),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFFBD3A5),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFF6EF89),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFEEA5FB),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFA5B5FB),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFF82EDDF),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 11),
-                            Container(
-                              width: 15,
-                              height: 15,
-                              decoration: ShapeDecoration(
-                                color: Color(0xFFFBA5A5),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(width: 0.50),
-                                  borderRadius: BorderRadius.circular(2),
-                                ),
-                              ),
-                            ),
-                          ],
+    return MaterialApp(
+      home: RankingScreen(),
+    );
+  }
+}
+
+class RankingScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Getting the screen size for responsive layout
+    var screenSize = MediaQuery.of(context).size;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Ranking'),
+        leading: Icon(Icons.arrow_back),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Divider(height: 16, thickness: 1),
+            Text(
+              '탁구공 오래띄우기',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            // Rank List
+            Container(
+              width: screenSize.width * 0.8, // Responsive width
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.blueAccent),
+              ),
+              child: Column(
+                children: List.generate(5, (index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          '${index + 1}.',
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: index == 0
+                                ? Colors.orange
+                                : index == 1
+                                    ? Colors.grey
+                                    : index == 2
+                                        ? Colors.brown
+                                        : Colors.black,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 3.74,
-                top: 39.20,
-                child: Container(
-                  width: 69,
-                  height: 89,
-                  decoration: ShapeDecoration(
-                    color: Color(0xFFCBE3FA),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 12,
-                top: 95,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '4.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 6,
-                      fontFamily: 'Irish Grover',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
+                        Expanded(
+                          child: Container(
+                            height: screenSize.height * 0.06,
+                            margin: EdgeInsets.only(left: 16),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 5,
+                                  offset: Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
+                  );
+                }),
               ),
-              Positioned(
-                left: 12,
-                top: 61,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '2.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFFC0C0C0),
-                      fontSize: 6,
-                      fontFamily: 'Irish Grover',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 13,
-                top: 77,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '1.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 6,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 15,
-                top: 3,
-                child: SizedBox(
-                  width: 48,
-                  height: 8,
-                  child: Text(
-                    'Ranking',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 16,
-                top: 29,
-                child: SizedBox(
-                  width: 45,
-                  height: 10,
-                  child: Text(
-                    '탁구공 오래띄우기',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 5,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 12,
-                top: 44,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '1.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFFFFCC25),
-                      fontSize: 6,
-                      fontFamily: 'Irish Grover',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 12,
-                top: 78,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '3.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFFD78F3D),
-                      fontSize: 6,
-                      fontFamily: 'Irish Grover',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 12,
-                top: 112,
-                child: SizedBox(
-                  width: 6,
-                  height: 8,
-                  child: Text(
-                    '5.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 6,
-                      fontFamily: 'Irish Grover',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+            Spacer(),
+            // Bottom color boxes
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildColorBox(Colors.grey),
+                _buildColorBox(Colors.brown),
+                _buildColorBox(Colors.orange[200]!),
+              ],
+            ),
+          ],
         ),
-      ],
+      ),
+    );
+  }
+
+  Widget _buildColorBox(Color color) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Colors.black12),
+      ),
     );
   }
 }

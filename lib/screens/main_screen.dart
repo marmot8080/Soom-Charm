@@ -88,7 +88,7 @@ class MainScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => rankingPage()),
                 );
               },
-              child: Text('rankingpPage'),
+              child: Text('rankingPage'),
             ),
             SizedBox(height: 20), // 버튼 간 간격 조정
             ElevatedButton(
