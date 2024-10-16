@@ -6,9 +6,13 @@ import 'package:soom_charm/util/BreathAnalyzer.dart';
 
 class MiniGameTest extends FlameGame {
   final MiniGameTestBg _bg = MiniGameTestBg();
+  final int _gForce = 400;
   late MiniGameTestBall _ball;
   late BreathAnalyzer _breathAnalyzer;
-  double newY = 0.0;
+  double _newY = 0.0;
+  double _lowFreqEnergy = 0.0;
+  bool _isDone = false;
+  bool _isStarted = false;
 
   @override
   Future<void> onLoad() async {
@@ -22,9 +26,7 @@ class MiniGameTest extends FlameGame {
     // BreathAnalyzer 초기화
     _breathAnalyzer = BreathAnalyzer(
       onEnergyDetected: (lowFreqEnergy) {
-        newY = size.y - 100 - ((lowFreqEnergy / 10) - 50);
-        if (newY >= size.y - 100) newY = size.y - 100;
-        else if (newY < 0) newY = 0;
+        _lowFreqEnergy = lowFreqEnergy;
       },
     );
 
@@ -36,12 +38,28 @@ class MiniGameTest extends FlameGame {
   void update(double dt) async {
     super.update(dt);
 
-    _ball.position = Vector2(_ball.position.x, newY);
+    if(_lowFreqEnergy > 100) _lowFreqEnergy = 100 + _lowFreqEnergy / 100;
+    _lowFreqEnergy *= 8 / ((size.y - _ball.position.y) ~/ 80);
+
+    _newY = _ball.position.y + (_gForce - _lowFreqEnergy) * dt;
+
+    if(_newY > size.y - 100) {
+      if(_isStarted) _isDone = true;
+      _newY = size.y - 100;
+    }
+    else if(_newY < size.y - 200 && !_isStarted) _isStarted = true;
+    else if(_newY < size.y - 500) _newY = size.y - 500;
+
+    _ball.position = Vector2(size.x / 2 - 30, _newY);
+
+    if(_isDone) {
+      _stopBreathDetection();
+    }
   }
 
   @override
   void onRemove() {
-    _breathAnalyzer.stopListening();
+    _stopBreathDetection();
 
     super.onRemove();
   }
@@ -50,6 +68,14 @@ class MiniGameTest extends FlameGame {
   Future<void> _startBreathDetection() async {
     try {
       await _breathAnalyzer.startListening();
+    } catch (e) {
+      debugPrint('Error: ${e}');
+    }
+  }
+
+  void _stopBreathDetection() {
+    try {
+      _breathAnalyzer.stopListening();
     } catch (e) {
       debugPrint('Error: ${e}');
     }
