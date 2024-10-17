@@ -39,9 +39,9 @@ class MiniGameTest extends FlameGame {
     super.update(dt);
 
     if(_lowFreqEnergy > 100) _lowFreqEnergy = 100 + _lowFreqEnergy / 100;
-    _lowFreqEnergy *= 8 / ((size.y - _ball.position.y) ~/ 80);
+    _lowFreqEnergy *= 8 / ((size.y - _ball.position.y) ~/ 100);
 
-    _newY = _ball.position.y + (_gForce - _lowFreqEnergy) * dt;
+    _newY = _ball.position.y + 2 * (_gForce - _lowFreqEnergy) * dt;
 
     if(_newY > size.y - 100) {
       if(_isStarted) _isDone = true;
