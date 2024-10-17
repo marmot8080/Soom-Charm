@@ -21,9 +21,6 @@ class _MiniGameTestPage extends State<MiniGameTestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("mini game test"),
-      ),
       body: Center(
         child: Padding(padding: const EdgeInsets.all(8.0),
           child: GameWidget(

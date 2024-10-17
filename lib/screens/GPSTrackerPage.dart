@@ -105,7 +105,7 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
                       onPressed: () {
                         Navigator.pop(context);
                         },
-                      icon: Icon(Icons.arrow_back, color: Colors.white, size: MediaQuery.of(context).size.height * 0.03)
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: MediaQuery.of(context).size.height * 0.035)
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),

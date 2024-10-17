@@ -27,7 +27,7 @@ class _GameStagePage extends State<GameStagePage> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_back, color: Colors.black, size: 40)
+                      icon: Icon(Icons.arrow_back, color: Colors.black, size: MediaQuery.of(context).size.height * 0.035)
                   ),
                   // 하트 아이콘들과 + 아이콘을 감싸는 컨테이너
                   Container(
