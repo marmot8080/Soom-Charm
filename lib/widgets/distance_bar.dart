@@ -11,7 +11,7 @@ class DistanceBar extends StatelessWidget {
     required this.value,
     this.fillColor = Colors.lightGreenAccent,
     this.backgroundColor = Colors.grey,
-    this.height = 10,
+    this.height = 7,
   }) : super(key: key);
 
   @override
