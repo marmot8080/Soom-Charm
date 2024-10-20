@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
 import 'package:soom_charm/widgets/GameStageButton.dart';
-import 'package:soom_charm/screens/StorePage.dart';
+import 'package:soom_charm/screens/mini_game/BonfireGamePage.dart';
 import 'package:soom_charm/widgets/HeartCounter.dart';
 
 class GameStagePage extends StatefulWidget {
@@ -46,7 +46,7 @@ class _GameStagePage extends State<GameStagePage> {
                     children: [
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameTestPage(),
+                        targetPage: BonfireGamePage(),
                       ),
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
