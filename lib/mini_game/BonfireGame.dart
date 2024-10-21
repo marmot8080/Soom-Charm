@@ -4,11 +4,13 @@ import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/components.dart';
 import 'package:soom_charm/util/BreathAnalyzer.dart';
-import 'package:soom_charm/mini_game/components/BonfiregameFirewood.dart';
+import 'package:soom_charm/mini_game/components/BonfireGameFirewood.dart';
+import 'package:soom_charm/mini_game/components/BonfireGameBg.dart';
 
 class BonfireGame extends FlameGame {
   late BreathAnalyzer _breathAnalyzer;
-  late BonfiregameFirewood _firewood = BonfiregameFirewood();
+  late BonfireGameFirewood _firewood = BonfireGameFirewood();
+  late BonfireGameBg _bg = BonfireGameBg();
   late SpriteAnimationComponent _fire;
   double _lowFreqEnergy = 0.0;
   double _fireSize = 32;
@@ -23,6 +25,7 @@ class BonfireGame extends FlameGame {
   Future<void> onLoad() async {
     super.onLoad();
 
+    await add(_bg);
     await add(_firewood);
 
     // 스프라이트 시트 로드
