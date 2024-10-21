@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 
-class BonfiregameFirewood extends SpriteComponent with HasGameRef {
+class BonfireGameFirewood extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     super.onLoad();
@@ -20,6 +20,6 @@ class BonfiregameFirewood extends SpriteComponent with HasGameRef {
     size = spriteOriginalSize * scaleFactor * 0.5;
 
     // 중앙 위치 설정
-    position = (screenSize - size) * 0.5 + Vector2(screenSize.x * 0.035, screenSize.y * 0.02);
+    position = (screenSize - size) * 0.5 + Vector2(screenSize.x * 0.045, screenSize.y * 0.015);
   }
 }
