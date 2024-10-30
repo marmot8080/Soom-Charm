@@ -8,7 +8,7 @@ class Breathanalyzerpage extends StatefulWidget {
 
 class _Breathanalyzerpage extends State<Breathanalyzerpage> {
   BreathAnalyzer? _breathAnalyzer;
-  double _lowFreqMagnitudeSum = 0.0; // 실시간으로 표시할 저주파 크기 합계
+  double _lowFreqEnergy = 0.0; // 실시간으로 표시할 저주파 크기 합계
 
   @override
   void initState() {
@@ -25,9 +25,9 @@ class _Breathanalyzerpage extends State<Breathanalyzerpage> {
   void _initializeBreathAnalyzer() {
     // BreathAnalyzer 초기화 및 콜백 설정
     _breathAnalyzer = BreathAnalyzer(
-      onEnergyDetected: (lowFreqMagnitudeSum) {
+      onEnergyDetected: (lowFreqEnergy) {
         setState(() {
-          _lowFreqMagnitudeSum = lowFreqMagnitudeSum; // 실시간 업데이트
+          _lowFreqEnergy = lowFreqEnergy;
         });
       },
     );
@@ -60,7 +60,7 @@ class _Breathanalyzerpage extends State<Breathanalyzerpage> {
             ),
             SizedBox(height: 20),
             Text(
-              _lowFreqMagnitudeSum.toStringAsFixed(2), // 저주파 크기 합계를 소수점 2자리까지 표시
+              _lowFreqEnergy.toStringAsFixed(2), // 저주파 크기 합계를 소수점 2자리까지 표시
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 40),
