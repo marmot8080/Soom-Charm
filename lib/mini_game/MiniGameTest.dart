@@ -27,6 +27,8 @@ class MiniGameTest extends FlameGame {
     _breathAnalyzer = BreathAnalyzer(
       onEnergyDetected: (lowFreqEnergy) {
         _lowFreqEnergy = lowFreqEnergy;
+        if(_lowFreqEnergy > 100) _lowFreqEnergy = 100 + _lowFreqEnergy / 100;
+        _lowFreqEnergy *= 8 / ((size.y - _ball.position.y) ~/ 100);
       },
     );
 
@@ -37,9 +39,6 @@ class MiniGameTest extends FlameGame {
   @override
   void update(double dt) async {
     super.update(dt);
-
-    if(_lowFreqEnergy > 100) _lowFreqEnergy = 100 + _lowFreqEnergy / 100;
-    _lowFreqEnergy *= 8 / ((size.y - _ball.position.y) ~/ 100);
 
     _newY = _ball.position.y + 2 * (_gForce - _lowFreqEnergy) * dt;
 
