@@ -14,26 +14,23 @@ class BonfireGame extends FlameGame {
   late SpriteAnimationComponent _fire;
   double _lowFreqEnergy = 0.0;
   double _fireSize = 32;
-  double _maxFireSize = 256;
+  final double _maxFireSize = 256;
   double _time = 0.0;
   double _tmp = 0.0;
-  int _resistanceValue = 200;
+  final int _resistanceValue = 200;
   bool _isStarted = false;
   bool _isDone = false;
+
+  late TextComponent _tmpText;
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
-    await add(_bg);
-    await add(_firewood);
-
     // 스프라이트 시트 로드
     final fireImage = await Flame.images.load('fire_sprite_sheet.png');
-
     // 스프라이트 시트의 각 프레임 크기 지정
     final spriteSheet = SpriteSheet(image: fireImage, srcSize: Vector2(1342, 1396));
-
     // 스프라이트 애니메이션 생성
     final fireAnimation = spriteSheet.createAnimation(row: 0, stepTime: 0.1, to: 9);
 
@@ -44,8 +41,6 @@ class BonfireGame extends FlameGame {
       position: Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize)
     );
 
-    await add(_fire);
-
     // BreathAnalyzer 초기화
     _breathAnalyzer = BreathAnalyzer(
       onEnergyDetected: (lowFreqEnergy) {
@@ -54,6 +49,20 @@ class BonfireGame extends FlameGame {
         _lowFreqEnergy *= 4;
       },
     );
+
+    await add(_bg);
+    await add(_firewood);
+    await add(_fire);
+
+    /*
+    // _tmp 값 확인용
+    _tmpText = TextComponent(
+      text: '_tmp: $_tmp',
+      position: Vector2(size.x/2 - 25, size.y/2 + 100),
+      textRenderer: TextPaint(style: const TextStyle(color: CupertinoColors.black)),
+    );
+    await add(_tmpText);
+    */
 
     // 바람 소리 감지를 시작
     _startBreathDetection();
@@ -64,7 +73,9 @@ class BonfireGame extends FlameGame {
     super.update(dt);
 
     _time += dt;
-    if(_fireSize < _maxFireSize && _time ~/ 10 > 0 && !_isDone) {
+    
+    // 10초마다 조건 확인 후 모닥불 크기 업데이트
+    if(_time ~/ 10 > 0 && _fireSize < _maxFireSize && _isStarted && !_isDone) {
       _time %= 10;
       _fireSize += 32;
       _fire.size = Vector2.all(_fireSize);
@@ -72,9 +83,14 @@ class BonfireGame extends FlameGame {
     }
 
     _tmp += 2 * (_lowFreqEnergy - _resistanceValue) * dt;
+    if(_tmp < 0) _tmp = 0;
+    if(_tmp > 600) _tmp = 600;
+    
+    // _tmpText 값 업데이트
+    // _tmpText.text = '_tmp: $_tmp';
 
-    if(!_isStarted && _tmp > 30) _isStarted = true;
-    else if(_isStarted && _tmp == 0 && !_isDone) {
+    if(!_isStarted && _tmp > 100) _isStarted = true;
+    else if(_isStarted && _tmp < 10 && !_isDone) {
       _isDone = true;
       _stopBreathDetection();
     }
