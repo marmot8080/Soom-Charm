@@ -9,6 +9,8 @@ class GPSTrackerPage extends StatefulWidget {
 }
 
 class _GPSTrackerPage extends State<GPSTrackerPage> {
+  double speedLimit = 30; // 제한 속도
+  
   final GPSTracker _gpsTracker = GPSTracker();
   bool _isDialogVisible = false;
   double _maxDistance = 3.0; // 포인트 획득 기준 거리
@@ -18,8 +20,8 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
     super.initState();
     _gpsTracker.addListener(() {
       setState(() {
-        // 속도 30km/h 초과 시 다이얼로그 띄우기
-        if (_gpsTracker.speedInKmh > 30) {
+        // 제한 속도 초과 시 다이얼로그 띄우기
+        if (_gpsTracker.speedInKmh > speedLimit) {
           if (_isDialogVisible == false) {
             _isDialogVisible = true;
             _showSpeedWarningDialog();

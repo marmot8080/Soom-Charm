@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/StorePage.dart';
 
 class HeartCounter extends StatelessWidget {
-  final int heartCount;
+  final int heartCount; // 하트 개수
 
   const HeartCounter({Key? key, required this.heartCount}) : super(key: key);
 
@@ -33,7 +33,7 @@ class HeartCounter extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => StorePage()),
+                MaterialPageRoute(builder: (context) => StorePage()), // 상점 페이지 이동
               );
             },
             icon: Icon(

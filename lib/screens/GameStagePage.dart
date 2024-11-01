@@ -10,7 +10,7 @@ class GameStagePage extends StatefulWidget {
 }
 
 class _GameStagePage extends State<GameStagePage> {
-  int _heartCount = 4;
+  int _heartCount = 4; // 하트 개수
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class _GameStagePage extends State<GameStagePage> {
       body: SafeArea(
         child: Column(
           children: [
-            // 상단 심장 아이콘과 타이틀 부분
+            // 상단 하트 아이콘과 타이틀 부분
             Padding(
               padding:
               const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),

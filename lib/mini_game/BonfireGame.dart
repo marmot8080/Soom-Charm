@@ -15,13 +15,14 @@ class BonfireGame extends FlameGame {
   double _lowFreqEnergy = 0.0;
   double _fireSize = 32;
   final double _maxFireSize = 256;
-  double _time = 0.0;
-  double _tmp = 0.0;
-  final int _resistanceValue = 200;
+  double _time = 0.0; // 게임 진행 시간
+  double _tmp = 0.0;  // 게임 시작, 종료 여부 결정 수치
+  final int _resistanceValue = 50; // _tmp 증감에 대한 고정 감소 값
   bool _isStarted = false;
   bool _isDone = false;
 
-  late TextComponent _tmpText;
+  // _tmp 값 확인용 컴포넌트
+  // late TextComponent _tmpText;
 
   @override
   Future<void> onLoad() async {
@@ -38,15 +39,15 @@ class BonfireGame extends FlameGame {
     _fire = SpriteAnimationComponent(
       animation: fireAnimation,
       size: Vector2.all(_fireSize),
-      position: Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize)
+      position: Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize) // 화면 중앙에 배치
     );
 
     // BreathAnalyzer 초기화
     _breathAnalyzer = BreathAnalyzer(
       onEnergyDetected: (lowFreqEnergy) {
         _lowFreqEnergy = lowFreqEnergy;
+        // record 라이브러리의 마이크 입력 불안정성으로 인해 _lowFreqEnergy 범위 축소 처리
         if(_lowFreqEnergy > 100) _lowFreqEnergy = 100 + _lowFreqEnergy / 100;
-        _lowFreqEnergy *= 4;
       },
     );
 
@@ -72,7 +73,8 @@ class BonfireGame extends FlameGame {
   void update(double dt) {
     super.update(dt);
 
-    _time += dt;
+    // 게임 진행시간 합산
+    if(_isStarted) _time += dt;
     
     // 10초마다 조건 확인 후 모닥불 크기 업데이트
     if(_time ~/ 10 > 0 && _fireSize < _maxFireSize && _isStarted && !_isDone) {
@@ -82,13 +84,15 @@ class BonfireGame extends FlameGame {
       _fire.position = Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize);
     }
 
+    // _tmp 업데이트
     _tmp += 2 * (_lowFreqEnergy - _resistanceValue) * dt;
     if(_tmp < 0) _tmp = 0;
-    if(_tmp > 600) _tmp = 600;
+    if(_tmp > 200) _tmp = 200;
     
     // _tmpText 값 업데이트
     // _tmpText.text = '_tmp: $_tmp';
 
+    // _tmp 값이 특정 수치 도달 시 게임 시작(잡음 등의 변수 방지)
     if(!_isStarted && _tmp > 100) _isStarted = true;
     else if(_isStarted && _tmp < 10 && !_isDone) {
       _isDone = true;

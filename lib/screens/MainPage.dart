@@ -10,8 +10,9 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  var _index = 1;
+  var _index = 1; // 하단 네비게이션 인덱스
 
+  // 하단 네비게이션 페이지 이동 리스트
   List<Widget> _pages = [
     GPSTrackerPage(),
     GameStagePage(),

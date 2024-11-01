@@ -8,7 +8,7 @@ class Breathanalyzerpage extends StatefulWidget {
 
 class _Breathanalyzerpage extends State<Breathanalyzerpage> {
   BreathAnalyzer? _breathAnalyzer;
-  double _lowFreqEnergy = 0.0; // 실시간으로 표시할 저주파 크기 합계
+  double _lowFreqEnergy = 0.0; // 실시간으로 표시할 저주파 에너지 합계
 
   @override
   void initState() {
@@ -40,7 +40,15 @@ class _Breathanalyzerpage extends State<Breathanalyzerpage> {
     try {
       await _breathAnalyzer?.startListening();
     } catch (e) {
-      print("Error starting breath detection: $e");
+      debugPrint("Error breath detection: $e");
+    }
+  }
+
+  void _stopBreathDetection() async  {
+    try {
+      await _breathAnalyzer?.stopListening();
+    } catch (e) {
+      debugPrint("Error breath detection: $e");
     }
   }
 
@@ -67,7 +75,7 @@ class _Breathanalyzerpage extends State<Breathanalyzerpage> {
             ElevatedButton(
               onPressed: () async {
                 // 녹음을 중지하는 버튼
-                await _breathAnalyzer?.stopListening();
+                _stopBreathDetection();
               },
               child: Text('Stop Recording'),
             ),

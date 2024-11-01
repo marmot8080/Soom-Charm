@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GameStageButton extends StatelessWidget {
-  final String imagePath;
-  final Widget targetPage; // 이동할 페이지를 받음
+  final String imagePath; // 버튼 이미지 경로
+  final Widget targetPage; // 이동할 페이지
 
   const GameStageButton({
     Key? key,

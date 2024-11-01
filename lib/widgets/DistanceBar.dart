@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DistanceBar extends StatelessWidget {
-  final double value; // 0.0 ~ 1.0 사이의 값
-  final Color fillColor;
-  final Color backgroundColor;
-  final double height;
+  final double value; // 게이지 값 (0.0 ~ 1.0 사이의 값)
+  final Color fillColor; // 게이지 바 색
+  final Color backgroundColor; // 게이지 배경 색
+  final double height; // 게이지 두께 (세로 두께)
 
   const DistanceBar({
     Key? key,
