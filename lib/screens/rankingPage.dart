@@ -43,7 +43,10 @@ class _RankingScreenState extends State<RankingScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ranking'),
+        title: Text(
+          'Ranking',
+          style: TextStyle(fontSize: 36), // Increase font size
+        ),
         leading: Icon(Icons.arrow_back),
         centerTitle: true,
       ),
@@ -56,14 +59,14 @@ class _RankingScreenState extends State<RankingScreen> {
               miniGameTitle,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 45), // Increase spacing to move ranking box down
             // Rank List
             Container(
               width: screenSize.width * 0.8,
               decoration: BoxDecoration(
                 color: Colors.blue[50],
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blueAccent),
+                // Removed the border
               ),
               child: Column(
                 children: List.generate(5, (index) {
@@ -118,6 +121,8 @@ class _RankingScreenState extends State<RankingScreen> {
             Spacer(),
             // Bottom color boxes
             Container(
+              margin: EdgeInsets.only(
+                  bottom: 40), // Move scroll box up by 30 pixels
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -153,8 +158,8 @@ class _RankingScreenState extends State<RankingScreen> {
 
   Widget _buildColorBox(Color color) {
     return Container(
-      width: 50,
-      height: 50,
+      width: 80,
+      height: 80,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(8),
