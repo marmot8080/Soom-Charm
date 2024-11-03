@@ -20,12 +20,20 @@ class RankingScreen extends StatefulWidget {
 
 class _RankingScreenState extends State<RankingScreen> {
   // 미니 게임 이름을 저장할 변수
-  String miniGameTitle = '탁구공 오래띄우기';
+  String miniGameTitle = 'mini game_0';
+
+  // 각 순위 옆 텍스트 상자에 표시될 텍스트 리스트
+  List<String> rankTexts =
+      List.generate(5, (index) => 'mini game_${index + 1} 내용 ${index + 1}');
 
   // 박스를 눌렀을 때 상태를 업데이트하는 함수
   void updateMiniGameTitle(int index) {
     setState(() {
       miniGameTitle = 'mini game_${index + 1}';
+      // 순위 옆 텍스트 상자의 내용을 업데이트
+      for (int i = 0; i < rankTexts.length; i++) {
+        rankTexts[i] = 'mini game_${index + 1} 내용 $i';
+      }
     });
   }
 
@@ -71,16 +79,18 @@ class _RankingScreenState extends State<RankingScreen> {
                             color: index == 0
                                 ? Colors.orange
                                 : index == 1
-                                ? Colors.grey
-                                : index == 2
-                                ? Colors.brown
-                                : Colors.black,
+                                    ? Colors.grey
+                                    : index == 2
+                                        ? Colors.brown
+                                        : Colors.black,
                           ),
                         ),
+                        SizedBox(width: 8),
                         Expanded(
                           child: Container(
                             height: screenSize.height * 0.06,
                             margin: EdgeInsets.only(left: 16),
+                            padding: EdgeInsets.symmetric(horizontal: 8.0),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
@@ -91,6 +101,11 @@ class _RankingScreenState extends State<RankingScreen> {
                                   offset: Offset(0, 5),
                                 ),
                               ],
+                            ),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              rankTexts[index],
+                              style: TextStyle(fontSize: 16),
                             ),
                           ),
                         ),
