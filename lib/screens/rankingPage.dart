@@ -88,14 +88,49 @@ class RankingScreen extends StatelessWidget {
             ),
             Spacer(),
             // Bottom color boxes
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildColorBox(Colors.grey),
-                _buildColorBox(Colors.brown),
-                _buildColorBox(Colors.orange[200]!),
-              ],
-            ),
+            Container(
+                child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.grey),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.brown),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.orange[200]!),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.white),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.yellow),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.blue),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.green),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: _buildColorBox(Colors.lightGreen),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: _buildColorBox(Colors.red))
+                ],
+              ),
+            )),
           ],
         ),
       ),
