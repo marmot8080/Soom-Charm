@@ -8,13 +8,15 @@ class breath_pattern_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: breath_pattern_screen(),
+      home: breathPatternScreen(),
     );
   }
 }
 
-class breath_pattern_screen extends StatelessWidget {
+class breathPatternScreen extends StatelessWidget {
   final String nickname = '숨챰님'; // Dynamic nickname
+  final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
+  final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +25,24 @@ class breath_pattern_screen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Image.asset('assets/user_icon.png'), // Left user icon image
-          onPressed: () {},
+          icon: Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 화살표 아이콘
+          onPressed: () {
+            Navigator.pop(context); // 이전 화면으로 돌아가기
+          },
         ),
-        title: Text(
-          nickname, // Display dynamic nickname
-          style: TextStyle(color: Colors.black, fontSize: 18),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/user_icon.png', // 사용자 아이콘 이미지
+              width: 24,
+              height: 24,
+            ),
+            SizedBox(width: 8),
+            Text(
+              nickname, // 동적 닉네임 표시
+              style: TextStyle(color: Colors.black, fontSize: 18),
+            ),
+          ],
         ),
         centerTitle: true,
       ),
@@ -53,14 +67,48 @@ class breath_pattern_screen extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Text(
-                    '지금까지 총 15.5 km를 움직이셨어요!',
-                    style: TextStyle(fontSize: 14),
+                  // Dynamic Total Distance Text
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '지금까지 총 ',
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '${totalDistance}km', // 총 이동 거리 변수
+                          style: TextStyle(
+                            fontSize: 16, // 크기를 더 크게
+                            fontWeight: FontWeight.bold, // 두껍게
+                            color: Colors.black,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '를 움직이셨어요!',
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 8),
-                  Text(
-                    '다음 스테이지까지는 3km 남았어요!',
-                    style: TextStyle(fontSize: 14, color: Colors.green),
+                  // Dynamic Text with Remaining Distance
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '다음 스테이지까지는 ',
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '${remainingDistance}km ', // 남은 거리 정보 변수
+                          style: TextStyle(fontSize: 14, color: Colors.green),
+                        ),
+                        TextSpan(
+                          text: '남았어요!',
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 8),
                   DistanceBar(
@@ -79,17 +127,33 @@ class breath_pattern_screen extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 200,
+              padding: EdgeInsets.all(16.0), // Padding for inner spacing
               decoration: BoxDecoration(
                 color: Colors.blue[50],
                 borderRadius: BorderRadius.circular(8),
               ),
-              alignment: Alignment.center,
-              child: Text(
-                '나의 호흡량 변화', // Placeholder for chart title
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '나의 호흡량 변화',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold, // Make text bold
+                    ),
+                  ),
+                  SizedBox(height: 16), // Space between title and chart
+                  Expanded(
+                    child: Center(
+                      child: Image.asset(
+                        'assets/breath_pattern.png', // Placeholder image path for chart
+                        width: double.infinity,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              // Here you would add your line chart widget with breathing data
-              // Example: LineChart(data: breathingData),
             ),
           ],
         ),
