@@ -122,7 +122,7 @@ class _RankingScreenState extends State<RankingScreen> {
             // Bottom color boxes
             Container(
               margin: EdgeInsets.only(
-                  bottom: 40), // Move scroll box up by 30 pixels
+                  bottom: 48), // Move scroll box up by 30 pixels
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -158,8 +158,8 @@ class _RankingScreenState extends State<RankingScreen> {
 
   Widget _buildColorBox(Color color) {
     return Container(
-      width: 80,
-      height: 80,
+      width: 70,
+      height: 70,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(8),
