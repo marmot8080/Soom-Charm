@@ -8,6 +8,7 @@ import 'package:soom_charm/screens/settingsPage.dart';
 import 'mainPage.dart';
 import 'loadingPage.dart';
 import 'rankingPage.dart';
+import 'breath_pattern_page.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -89,6 +90,17 @@ class MainScreen extends StatelessWidget {
                 );
               },
               child: Text('rankingPage'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => breath_pattern_page()),
+                );
+              },
+              child: Text('breathPattenPage'),
             ),
             SizedBox(height: 20), // 버튼 간 간격 조정
             ElevatedButton(

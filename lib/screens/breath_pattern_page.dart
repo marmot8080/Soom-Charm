@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(breath_pattern_page());
 }
 
-class MyApp extends StatelessWidget {
+class breath_pattern_page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainScreen(),
+      home: breath_pattern_screen(),
     );
   }
 }
 
-class MainScreen extends StatelessWidget {
+class breath_pattern_screen extends StatelessWidget {
   final String nickname = '숨챰님'; // Dynamic nickname
 
   @override
