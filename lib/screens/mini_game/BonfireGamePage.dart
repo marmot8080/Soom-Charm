@@ -1,13 +1,13 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:soom_charm/mini_game/MiniGameTest.dart';
+import 'package:soom_charm/mini_game/BonfireGame.dart';
 
-class MiniGameTestPage extends StatefulWidget {
+class BonfireGamePage extends StatefulWidget {
   @override
-  _MiniGameTestPage createState() => _MiniGameTestPage();
+  _BonfireGamePage createState() => _BonfireGamePage();
 }
 
-class _MiniGameTestPage extends State<MiniGameTestPage> {
+class _BonfireGamePage extends State<BonfireGamePage> {
   @override
   void initState() {
     super.initState();
@@ -24,7 +24,7 @@ class _MiniGameTestPage extends State<MiniGameTestPage> {
       body: Center(
         child: Padding(padding: const EdgeInsets.all(8.0),
           child: GameWidget(
-            game: MiniGameTest()
+              game: BonfireGame()
           ),
         ),
       ),

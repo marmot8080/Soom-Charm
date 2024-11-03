@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GameStageButton extends StatelessWidget {
-  final String imagePath;
-  final Widget targetPage; // 이동할 페이지를 받음
+  final String imagePath; // 버튼 이미지 경로
+  final Widget targetPage; // 이동할 페이지
 
   const GameStageButton({
     Key? key,
@@ -21,7 +21,7 @@ class GameStageButton extends StatelessWidget {
       },
         child: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black, width: 4),
+            border: Border.all(color: Colors.black, width: MediaQuery.of(context).size.height * 0.004),
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: ClipRRect(
@@ -29,8 +29,8 @@ class GameStageButton extends StatelessWidget {
             child: Image.asset(
               imagePath,
               fit: BoxFit.cover,
-              width: 80,
-              height: 80,
+              width: MediaQuery.of(context).size.height * 0.08,
+              height: MediaQuery.of(context).size.height * 0.08,
             ),
           ),
         )

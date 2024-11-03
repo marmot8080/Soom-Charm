@@ -16,14 +16,15 @@ class BreathAnalyzer {
 
   // 마이크 입력 시작
   Future<void> startListening() async {
-    if (await _recorder.hasPermission()) {
-      // Start recording to stream
+    if (await _recorder.hasPermission()) { // 마이크 권한 확인
+      // 스트림 열기
       final stream = await _recorder.startStream(
         const RecordConfig(
           encoder: AudioEncoder.pcm16bits,
         ),
       );
 
+      // 오디오 데이터 읽을 때마다 오디오 데이터 처리
       _recorderSubscription = stream.listen((audioData) {
         if (audioData != null) {
           _processAudioData(audioData);
@@ -64,7 +65,7 @@ class BreathAnalyzer {
   // 저주파 에너지를 계산하는 함수
   double _calculateLowFreqEnergy(Float32List floatData) {
     final FFT fft = FFT(floatData.length); // 전체 데이터를 한 번에 처리할 FFT 생성
-    var lowFreqEnergy = 0.0;
+    var lowFreqEnergy = 0.0; // 총 저주파 에너지 합
 
     // FFT 실행
     var spectrum = fft.realFft(floatData); // FFT 결과는 복소수 스펙트럼

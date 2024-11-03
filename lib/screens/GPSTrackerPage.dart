@@ -9,6 +9,8 @@ class GPSTrackerPage extends StatefulWidget {
 }
 
 class _GPSTrackerPage extends State<GPSTrackerPage> {
+  double speedLimit = 30; // 제한 속도
+  
   final GPSTracker _gpsTracker = GPSTracker();
   bool _isDialogVisible = false;
   double _maxDistance = 3.0; // 포인트 획득 기준 거리
@@ -18,8 +20,8 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
     super.initState();
     _gpsTracker.addListener(() {
       setState(() {
-        // 속도 30km/h 초과 시 다이얼로그 띄우기
-        if (_gpsTracker.speedInKmh > 30) {
+        // 제한 속도 초과 시 다이얼로그 띄우기
+        if (_gpsTracker.speedInKmh > speedLimit) {
           if (_isDialogVisible == false) {
             _isDialogVisible = true;
             _showSpeedWarningDialog();
@@ -105,28 +107,28 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
                       onPressed: () {
                         Navigator.pop(context);
                         },
-                      icon: Icon(Icons.arrow_back, color: Colors.white, size: 40)
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: MediaQuery.of(context).size.height * 0.035)
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 DistanceBar(
                     value: _gpsTracker.totalDistance % _maxDistance / _maxDistance
                 ),
                 Align(
-                  alignment: Alignment.centerRight * 0.8,
+                  alignment: Alignment.centerRight * 0.85,
                   child: Text(
                     '${(_gpsTracker.totalDistance % _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.18),
                 OnOffButton(
                   onToggle: _handleToggle,
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 Text(
                   '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
-                  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.05, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ],
           ),
