@@ -13,10 +13,24 @@ class rankingPage extends StatelessWidget {
   }
 }
 
-class RankingScreen extends StatelessWidget {
+class RankingScreen extends StatefulWidget {
+  @override
+  _RankingScreenState createState() => _RankingScreenState();
+}
+
+class _RankingScreenState extends State<RankingScreen> {
+  // 미니 게임 이름을 저장할 변수
+  String miniGameTitle = '탁구공 오래띄우기';
+
+  // 박스를 눌렀을 때 상태를 업데이트하는 함수
+  void updateMiniGameTitle(int index) {
+    setState(() {
+      miniGameTitle = 'mini game_${index + 1}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Getting the screen size for responsive layout
     var screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -31,13 +45,13 @@ class RankingScreen extends StatelessWidget {
           children: [
             Divider(height: 16, thickness: 1),
             Text(
-              '탁구공 오래띄우기',
+              miniGameTitle,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
             // Rank List
             Container(
-              width: screenSize.width * 0.8, // Responsive width
+              width: screenSize.width * 0.8,
               decoration: BoxDecoration(
                 color: Colors.blue[50],
                 borderRadius: BorderRadius.circular(12),
@@ -57,10 +71,10 @@ class RankingScreen extends StatelessWidget {
                             color: index == 0
                                 ? Colors.orange
                                 : index == 1
-                                    ? Colors.grey
-                                    : index == 2
-                                        ? Colors.brown
-                                        : Colors.black,
+                                ? Colors.grey
+                                : index == 2
+                                ? Colors.brown
+                                : Colors.black,
                           ),
                         ),
                         Expanded(
@@ -89,48 +103,33 @@ class RankingScreen extends StatelessWidget {
             Spacer(),
             // Bottom color boxes
             Container(
-                child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.grey),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.brown),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.orange[200]!),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.white),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.yellow),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.blue),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.green),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                    child: _buildColorBox(Colors.lightGreen),
-                  ),
-                  Padding(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(9, (index) {
+                    return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                      child: _buildColorBox(Colors.red))
-                ],
+                      child: GestureDetector(
+                        onTap: () => updateMiniGameTitle(index),
+                        child: _buildColorBox(
+                          [
+                            Colors.grey,
+                            Colors.brown,
+                            Colors.orange[200]!,
+                            Colors.white,
+                            Colors.yellow,
+                            Colors.blue,
+                            Colors.green,
+                            Colors.lightGreen,
+                            Colors.red
+                          ][index],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
               ),
-            )),
+            ),
           ],
         ),
       ),
