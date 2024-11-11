@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:contact/firebase_options.dart';
@@ -7,16 +8,12 @@ import 'Routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await dotenv.load(fileName: 'assets/.env');
-
   await Firebase.initializeApp(
     name: 'hellotest',
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
   KakaoSdk.init(nativeAppKey: 'YOUR_KAKAO_REST_API_KEY');
-
   runApp(const MyApp());
 }
 

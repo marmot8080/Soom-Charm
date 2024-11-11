@@ -85,8 +85,14 @@ flutter:
     - assets/google.png
     - assets/apple.png
     - assets/mainimage.png
-    - assets/sky_rain.json
+    - assets/weather/weather_rain.json
+    - assets/weather/weather_cloud.json
+    - assets/weather/weather_snow.json
+    - assets/weather/weather_sun.json
     - assets/.env
+    - assets/weather/common_lungs_image/lungs_first.json
+    - assets/weather/common_lungs_image/lungs_middle.json
+    - assets/weather/common_lungs_image/lungs_final.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

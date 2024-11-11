@@ -4,12 +4,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
 
-class RainUI extends StatefulWidget {
+class SnowUI extends StatefulWidget {
   @override
-  _RainUIState createState() => _RainUIState();
+  _SnowUIState createState() => _SnowUIState();
 }
 
-class _RainUIState extends State<RainUI> {
+class _SnowUIState extends State<SnowUI> {
   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
   double _ballPosition = 0.5; // 공 위치 (0: 아래쪽, 1: 위쪽)
   double _soundThreshold = 50.0; // 바람 불기 감지 임계값
@@ -116,7 +116,7 @@ class _RainUIState extends State<RainUI> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Lottie.asset(
-              'assets/weather/weather_rain.json',
+              'assets/weather/weather_snow.json',
               fit: BoxFit.fitHeight,
             ),
           ),

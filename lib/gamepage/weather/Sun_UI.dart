@@ -4,12 +4,12 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
 
-class RainUI extends StatefulWidget {
+class SunUI extends StatefulWidget {
   @override
-  _RainUIState createState() => _RainUIState();
+  _SunnUIState createState() => _SunnUIState();
 }
 
-class _RainUIState extends State<RainUI> {
+class _SunnUIState extends State<SunUI> {
   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
   double _ballPosition = 0.5; // 공 위치 (0: 아래쪽, 1: 위쪽)
   double _soundThreshold = 50.0; // 바람 불기 감지 임계값
