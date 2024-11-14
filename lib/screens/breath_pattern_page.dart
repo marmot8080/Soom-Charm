@@ -34,8 +34,8 @@ class breathPatternScreen extends StatelessWidget {
           children: [
             Image.asset(
               'assets/images/user_icon.png', // 사용자 아이콘 이미지
-              width: 43,
-              height: 43,
+              width: 50,
+              height: 50,
             ),
             SizedBox(width: 8),
             // Blue Box with Bold Text for Nickname
@@ -63,7 +63,7 @@ class breathPatternScreen extends StatelessWidget {
         child: Column(
           children: [
             Divider(thickness: 1, color: Colors.grey),
-            SizedBox(height: 16),
+            SizedBox(height: 12),
             // Cumulative Distance Section
             Container(
               padding: EdgeInsets.all(16.0),
@@ -137,7 +137,7 @@ class breathPatternScreen extends StatelessWidget {
             SizedBox(height: 16),
             // Line Chart Section
             Container(
-              width: 270,
+              width: 290,
               height: 300,
               padding: EdgeInsets.all(16.0), // Padding for inner spacing
               decoration: BoxDecoration(
