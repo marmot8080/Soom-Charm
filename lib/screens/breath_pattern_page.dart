@@ -33,14 +33,26 @@ class breathPatternScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/user_icon.png', // 사용자 아이콘 이미지
-              width: 24,
-              height: 24,
+              'assets/images/user_icon.png', // 사용자 아이콘 이미지
+              width: 43,
+              height: 43,
             ),
             SizedBox(width: 8),
-            Text(
-              nickname, // 동적 닉네임 표시
-              style: TextStyle(color: Colors.black, fontSize: 18),
+            // Blue Box with Bold Text for Nickname
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.blue[100], // 파란색 박스
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text(
+                nickname, // 동적 닉네임 표시
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold, // 텍스트 볼드 처리
+                ),
+              ),
             ),
           ],
         ),
@@ -125,8 +137,8 @@ class breathPatternScreen extends StatelessWidget {
             SizedBox(height: 16),
             // Line Chart Section
             Container(
-              width: double.infinity,
-              height: 200,
+              width: 270,
+              height: 300,
               padding: EdgeInsets.all(16.0), // Padding for inner spacing
               decoration: BoxDecoration(
                 color: Colors.blue[50],
@@ -138,19 +150,19 @@ class breathPatternScreen extends StatelessWidget {
                   Text(
                     '나의 호흡량 변화',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold, // Make text bold
                     ),
                   ),
-                  SizedBox(height: 16), // Space between title and chart
+                  SizedBox(height: 11), // Space between title and chart
                   Expanded(
                     child: Center(
-                      child: Image.asset(
-                        'assets/breath_pattern.png', // Placeholder image path for chart
-                        width: double.infinity,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
+                        //child: Image.asset(
+                        //'assets/breath_pattern.png', // Placeholder image path for chart
+                        // width: double.infinity,
+                        //fit: BoxFit.contain,
+                        //),
+                        ),
                   ),
                 ],
               ),
@@ -166,17 +178,17 @@ class breathPatternScreen extends StatelessWidget {
             children: [
               IconButton(
                 icon: Image.asset(
-                    'assets/icon_settings.png'), // Left bottom icon image
+                    'assets/images/setting_icon.png'), // Left bottom icon image
                 onPressed: () {},
               ),
               IconButton(
                 icon: Image.asset(
-                    'assets/icon_cart.png'), // Middle bottom icon image
+                    'assets/images/shopping_icon.png'), // Middle bottom icon image
                 onPressed: () {},
               ),
               IconButton(
                 icon: Image.asset(
-                    'assets/icon_chart.png'), // Right bottom icon image
+                    'assets/images/chart_icon.png'), // Right bottom icon image
                 onPressed: () {},
               ),
             ],
