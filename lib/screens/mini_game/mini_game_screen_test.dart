@@ -25,10 +25,9 @@ class _MiniGameScreenTestState extends State<MiniGameScreenTest> {
         title: Text("mini game test"),
       ),
       body: Center(
-        child: Padding(padding: const EdgeInsets.all(8.0),
-          child: GameWidget(
-            game: MiniGameTest()
-          ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GameWidget(game: MiniGameTest()),
         ),
       ),
     );
