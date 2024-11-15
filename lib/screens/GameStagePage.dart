@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soom_charm/util/SharedPreferenceManager.dart';
 import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
 import 'package:soom_charm/widgets/GameStageButton.dart';
 import 'package:soom_charm/screens/mini_game/BonfireGamePage.dart';
@@ -10,7 +11,30 @@ class GameStagePage extends StatefulWidget {
 }
 
 class _GameStagePage extends State<GameStagePage> {
-  int _heartCount = 4; // 하트 개수
+  late SharedPreferenceManager spManager;
+  int? _heartCount; // 하트 개수
+  int heartCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeHeartCount(); // 비동기 초기화 메서드 호출
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+  }
+
+  void _initializeHeartCount() async {
+    spManager = SharedPreferenceManager();
+    spManager.initInstance(); // 인스턴스 초기화
+
+    _heartCount = await spManager.getHeartCount(); // 비동기 호출
+    setState(() {
+      heartCount = _heartCount ?? 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +57,7 @@ class _GameStagePage extends State<GameStagePage> {
                       icon: Icon(Icons.arrow_back, color: Colors.black, size: MediaQuery.of(context).size.height * 0.035)
                   ),
                   // 하트 아이콘들과 + 아이콘을 감싸는 컨테이너
-                  HeartCounter(heartCount: _heartCount)
+                  HeartCounter(heartCount: heartCount)
                 ],
               ),
             ),
