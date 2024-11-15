@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soom_charm/screens/MainPage.dart';
 
 class StorePage extends StatelessWidget {
   @override
@@ -73,7 +74,10 @@ class StorePage extends StatelessWidget {
             SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                // 돈벌러 가기 기능 추가 필요
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage(initialIndex: 0,)), // GPSTrackerPage로 이동
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
