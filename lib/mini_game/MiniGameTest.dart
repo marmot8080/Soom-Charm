@@ -44,7 +44,7 @@ class MiniGameTest extends FlameGame {
   void update(double dt) async {
     super.update(dt);
 
-    _newY = _ball.position.y + 2 * (_gForce - _lowFreqEnergy) * dt;
+    _newY = _ball.position.y + (_gForce - _lowFreqEnergy) * dt;
 
     if(_newY > size.y - 100) {  // 게임 종료 여부 확인
       if(_isStarted) _isDone = true;
