@@ -2,6 +2,9 @@ import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 class MiniGameAirplane extends SpriteComponent with HasGameRef {
+  double velocity = 0.0; // 현재 속도
+  final double gravity = 100.0; // 중력 가속도 (픽셀/초^2)
+
   @override
   Future<void> onLoad() async {
     super.onLoad();

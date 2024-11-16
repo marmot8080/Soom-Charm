@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:soom_charm/mini_game/mini_game_airplane.dart';
 import 'package:soom_charm/mini_game/mini_game_test.dart';
-import 'package:soom_charm/mini_game/Mini_game_airplane.dart';
 
 class MiniGameScreenTest extends StatefulWidget {
   @override
