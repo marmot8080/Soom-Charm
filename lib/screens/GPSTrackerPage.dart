@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/util/GPSTracker.dart';
+import 'package:soom_charm/util/SharedPreferenceManager.dart';
+
 import 'package:soom_charm/widgets/OnOffButton.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
 
@@ -9,25 +11,71 @@ class GPSTrackerPage extends StatefulWidget {
 }
 
 class _GPSTrackerPage extends State<GPSTrackerPage> {
-  double speedLimit = 30; // 제한 속도
-  
-  final GPSTracker _gpsTracker = GPSTracker();
+  late GPSTracker _gpsTracker;
+  final double _speedLimit = 30; // 제한 속도
+  final double _maxDistance = 1.0; // 포인트 획득 기준 거리
+  final int _pointPerDistance = 100; // _maxDistance 달성 시 마다 획득 포인트
+  late SharedPreferenceManager spManager;
+  late double? _totalDistance;
+  late int? _point;
+  late int _tmp;
   bool _isDialogVisible = false;
-  double _maxDistance = 3.0; // 포인트 획득 기준 거리
 
   @override
   void initState() {
     super.initState();
+
+    _initializePointCount();
+    _initializeTotalDistance();
+
+  }
+
+  @override
+  void dispose() {
+    spManager.setTotalDistance(_totalDistance!);
+    _gpsTracker.dispose(); // 리스너 제거
+    super.dispose();
+  }
+
+  void _initializeTotalDistance() async {
+    spManager = SharedPreferenceManager();
+    spManager.initInstance(); // 인스턴스 초기화
+
+    _totalDistance = await spManager.getTotalDistance(); // 비동기 호출
+    setState(() {
+      _totalDistance = _totalDistance ?? 0;
+    });
+
+    _tmp = _totalDistance! ~/ _maxDistance;
+
+    _gpsTracker = GPSTracker(totalDistance: _totalDistance!);
     _gpsTracker.addListener(() {
       setState(() {
         // 제한 속도 초과 시 다이얼로그 띄우기
-        if (_gpsTracker.speedInKmh > speedLimit) {
+        if (_gpsTracker.speedInKmh > _speedLimit) {
           if (_isDialogVisible == false) {
             _isDialogVisible = true;
             _showSpeedWarningDialog();
           }
         }
+
+        // _maxDistance 달성 시 마다 포인트 부여
+        if(_totalDistance! ~/ _maxDistance == _tmp + 1) {
+          _tmp += 1;
+          _point = _point! + _pointPerDistance;
+          spManager.setPoint(_point!);
+        }
       }); // 거리 변화 시 상태 업데이트
+    });
+  }
+
+  void _initializePointCount() async {
+    spManager = SharedPreferenceManager();
+    spManager.initInstance(); // 인스턴스 초기화
+
+    _point = await spManager.getPoint(); // 비동기 호출
+    setState(() {
+      _point = _point ?? 0;
     });
   }
 
@@ -87,12 +135,6 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
   }
 
   @override
-  void dispose() {
-    _gpsTracker.dispose(); // 리스너 제거
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF6CB7FF),
@@ -112,12 +154,12 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                 DistanceBar(
-                    value: _gpsTracker.totalDistance % _maxDistance / _maxDistance
+                    value: _totalDistance! % _maxDistance / _maxDistance
                 ),
                 Align(
                   alignment: Alignment.centerRight * 0.85,
                   child: Text(
-                    '${(_gpsTracker.totalDistance % _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
+                    '${(_totalDistance! % _maxDistance).toStringAsFixed(2)}/${_maxDistance.toStringAsFixed(0)}km',
                     style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.02, fontWeight: FontWeight.bold, color: Colors.white),
                   ),
                 ),
@@ -127,7 +169,7 @@ class _GPSTrackerPage extends State<GPSTrackerPage> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 Text(
-                  '${_gpsTracker.totalDistance.toStringAsFixed(2)} km',
+                  '${_totalDistance!.toStringAsFixed(2)} km',
                   style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.05, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ],
