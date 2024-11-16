@@ -13,20 +13,20 @@ class ScrollingBackground extends Component with HasGameRef {
   late SpriteComponent background1;
   late SpriteComponent background2;
 
-  final double speed = 50; // 배경이 왼쪽으로 움직이는 속도 (픽셀/초)
+  final double speed = 80; // 배경이 왼쪽으로 움직이는 속도 (픽셀/초)
 
   @override
   Future<void> onLoad() async {
     super.onLoad();
 
     // 배경 스프라이트 로드
-    final backgroundSprite = await gameRef.loadSprite('asset/images/minigame_background.png');
+    final backgroundSprite =
+        await gameRef.loadSprite('airplane_minigame_backround.png');
 
     // 배경 1
-    background1 = SpriteComponent()
-      background1.sprite = backgroundSprite
-      background1.size = gameRef.size // 화면 크기에 맞게 배경 크기 설정
-      background1.position = Vector2(0, 0); // 화면의 왼쪽에 위치
+    background1 = SpriteComponent()..sprite = backgroundSprite;
+    background1.size = gameRef.size; // 화면 크기에 맞게 배경 크기 설정
+    background1.position = Vector2(0, 0); // 화면의 왼쪽에 위치
 
     // 배경 2
     background2 = SpriteComponent()

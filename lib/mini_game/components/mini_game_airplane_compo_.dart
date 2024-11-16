@@ -1,10 +1,11 @@
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 
 class MiniGameAirplane extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await gameRef.loadSprite('assets/images/airplane.png');
+    sprite = await gameRef.loadSprite('Airplane.png');
 
     final spriteOriginalSize = sprite!.srcSize; // 이미지 원본 크기
     final screenSize = gameRef.size; // 화면 크기
@@ -18,10 +19,10 @@ class MiniGameAirplane extends SpriteComponent with HasGameRef {
     }
 
     // 원본 비율을 유지하면서 크기 조정
-    size = spriteOriginalSize * scaleFactor * 0.5;
+    size = spriteOriginalSize * scaleFactor * 0.3;
 
     // 중앙 위치 설정
     position = (screenSize - size) * 0.5 +
-        Vector2(screenSize.x * 0.025, screenSize.y * 0.015);
+        Vector2(screenSize.x * 0.015, screenSize.y * 0.015);
   }
 }

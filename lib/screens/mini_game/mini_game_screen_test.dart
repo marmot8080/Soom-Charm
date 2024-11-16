@@ -1,6 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:soom_charm/mini_game/mini_game_test.dart';
+import 'package:soom_charm/mini_game/Mini_game_airplane.dart';
 
 class MiniGameScreenTest extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _MiniGameScreenTestState extends State<MiniGameScreenTest> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: GameWidget(game: MiniGameTest()),
+          child: GameWidget(game: Minigame_airplane()),
         ),
       ),
     );
