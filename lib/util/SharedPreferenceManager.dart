@@ -7,23 +7,6 @@ class SharedPreferenceManager {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void setLastLoginTime() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    DateTime now = DateTime.now();
-
-    // 현재 시간을 유닉스 시간(초)으로 변환하여 저장
-    await prefs.setInt('lastLoginTime', now.millisecondsSinceEpoch);
-  }
-
-  Future<int?> getLastLoginTime() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // 현재 시간을 유닉스 시간(초)으로 변환하여 저장
-    int? _lastLoginTime = await prefs.getInt('lastLoginTime');
-
-    return _lastLoginTime;
-  }
-
   void setHeartCount(int heartCount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -36,5 +19,33 @@ class SharedPreferenceManager {
     int? heartCount = await prefs.getInt('heartCount');
 
     return heartCount;
+  }
+
+  void setPoint(int point) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setInt('point', point);
+  }
+
+  Future<int?> getPoint() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    int? point = await prefs.getInt('point');
+
+    return point;
+  }
+
+  void setTotalDistance(double totalDistance) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setDouble('totalDistance', totalDistance);
+  }
+
+  Future<double?> getTotalDistance() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    double? totalDistance = await prefs.getDouble('totalDistance');
+
+    return totalDistance;
   }
 }
