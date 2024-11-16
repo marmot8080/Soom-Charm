@@ -45,7 +45,7 @@ class HeartCounter extends StatelessWidget {
           // + 추가
           if (heartCount > 5)
             Text(
-              '+${heartCount - 5}', // 5개 초과한 부분
+              ' +${heartCount - 5}', // 5개 초과한 부분
               style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height * 0.025,
                 color: Colors.black,
@@ -62,7 +62,7 @@ class HeartCounter extends StatelessWidget {
             icon: Icon(
               Icons.add,
               color: Colors.black,
-              size: MediaQuery.of(context).size.height * 0.03,
+              size: MediaQuery.of(context).size.height * 0.025,
             ),
           ),
         ],
