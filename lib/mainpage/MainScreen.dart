@@ -118,12 +118,7 @@ class MainScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // 설정 아이콘 버튼
-                  IconButton(
-                    icon: Icon(Icons.settings, size: 40),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/mainpage/Settings_test'); // Named route 사용
-                    },
-                  ),
+                  Icon(Icons.settings, size: 40),
                   IconButton(
                     icon: Icon(Icons.shopping_cart, size: 40),
                     onPressed: () {

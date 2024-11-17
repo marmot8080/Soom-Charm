@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'gameui_component/WeatherDialog.dart';
 import 'gameui_component/WeatherInfoViewModel.dart';
 import 'gameui_component/WeatherService.dart';
 import 'gameui_component/WeatherNavigationService.dart';
@@ -27,41 +26,12 @@ class _GameUIState extends State<GameUI> {
     }
   }
 
-  // void _showWeatherDialog() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => WeatherDialog(
-  //       cityName: weatherInfo.cityName ?? "알 수 없음",
-  //       weatherDescription: weatherInfo.weatherDescription ?? "알 수 없음",
-  //       temperature: weatherInfo.temperature ?? 0.0,
-  //       windStrengthDescription: weatherInfo.getWindStrengthDescription(),
-  //       onConfirm: () {
-  //         Navigator.pop(context);
-  //         WeatherNavigationService.navigateBasedOnWeather(context, weatherInfo);
-  //       },
-  //     ),
-  //   );
-  // }
-  // 이걸로 바꿔야함!!!!!!!!
-
-
   void _showWeatherDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => WeatherDialog(
-        cityName: weatherInfo.cityName ?? "알 수 없음",
-        weatherDescription: weatherInfo.weatherDescription ?? "알 수 없음",
-        temperature: weatherInfo.temperature ?? 0.0,
-        windStrengthDescription: weatherInfo.getWindStrengthDescription(),
-        onConfirm: () {
-          Navigator.pop(context);
-          WeatherNavigationService.navigateBasedOnWeather(
-              context,
-              weatherInfo,
-              weatherInfo.getWindStrengthDescription() // 바람 세기 정보 전달
-          );
-        },
-      ),
+    // UI 없이 날씨 데이터를 기반으로 네비게이션만 처리
+    WeatherNavigationService.navigateBasedOnWeather(
+      context,
+      weatherInfo,
+      weatherInfo.getWindStrengthDescription(), // 바람 세기 정보 전달
     );
   }
 

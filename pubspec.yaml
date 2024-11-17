@@ -90,9 +90,12 @@ flutter:
     - assets/weather/weather_snow.json
     - assets/weather/weather_sun.json
     - assets/.env
-    - assets/weather/common_lungs_image/lungs_first.json
-    - assets/weather/common_lungs_image/lungs_middle.json
-    - assets/weather/common_lungs_image/lungs_final.json
+    - assets/balloon.json
+    - assets/balloon_exploded.json
+    - assets/weather/character/character_sun.json
+    - assets/weather/character/character_rain.json
+    - assets/weather/character/character_snow.json
+    - assets/weather/character/character_cloud.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

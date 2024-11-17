@@ -42,7 +42,10 @@ Map<String, WidgetBuilder> buildRoutes() {
       return CloudUI(windStrengthDescription: windStrengthDescription);
     },
     '/gamepage/weather/Sun_UI': (context) => SunUI(),
-    '/gamepage/weather/Snow_UI': (context) => SnowUI(),
+    '/gamepage/weather/Snow_UI': (context) {
+      String windStrengthDescription = context.read<WeatherInfoViewModel>().getWindStrengthDescription();
+      return SnowUI(windStrengthDescription: windStrengthDescription);
+    },
 
     '/roompage/Room_Create': (context) => RoomCreateScreen(),
     '/roompage/Room_List_Screen': (context) => RoomListScreen(),

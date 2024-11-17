@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:contact/gamepage/weather/Cloud_UI.dart';
 import 'package:contact/gamepage/weather/Rain_UI.dart';
-import 'package:contact/gamepage/weather/Sun_UI.dart';
 import 'package:contact/gamepage/weather/Snow_UI.dart';
 import '../Air_Bower_Game.dart';
 import 'WeatherInfoViewModel.dart';
@@ -12,7 +11,6 @@ class WeatherNavigationService {
     // 이걸로 바꿔야함!!
 
     String? weatherDescription = weatherInfo.weatherDescription?.toLowerCase();
-    double windStrength = weatherInfo.windStrength ?? 0.0;
 
     if (weatherDescription != null) {
       if (weatherDescription.contains('맑음')) {
@@ -20,7 +18,7 @@ class WeatherNavigationService {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SunUI(), // windStrength를 전달하지 않음
+            builder: (context) => CloudUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
           ),
         );
       } else if (weatherDescription.contains('구름') || weatherDescription.contains('흐림')) {
@@ -46,7 +44,7 @@ class WeatherNavigationService {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SnowUI(), // windStrength를 전달하지 않음
+            builder: (context) => SnowUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
           ),
         );
       } else {
