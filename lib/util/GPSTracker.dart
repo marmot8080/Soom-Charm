@@ -8,6 +8,8 @@ class GPSTracker extends ChangeNotifier {
   Position? _previousPosition;  // 이전 저장 위치
   DateTime? _lastAlertTime; // 최근 경고 알림 시간
 
+  GPSTracker({Key? key, required this.totalDistance}) : super();
+
   // 위치 추적 시작
   Future<void> startTracking() async {
     // 위치 권한 확인 및 요청

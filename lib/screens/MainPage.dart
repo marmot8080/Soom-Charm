@@ -1,16 +1,26 @@
-import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/GPSTrackerPage.dart';
 import 'package:soom_charm/screens/GameStagePage.dart';
 import 'package:soom_charm/screens/SettingPage.dart';
 
 class MainPage extends StatefulWidget {
+  final int initialIndex;
+
+  MainPage({Key? key, this.initialIndex = 1}) : super(key: key);
+
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  var _index = 1; // 하단 네비게이션 인덱스
+  late int _index;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _index = widget.initialIndex; // 초기 인덱스 값 설정
+  }
 
   // 하단 네비게이션 페이지 이동 리스트
   List<Widget> _pages = [
@@ -29,7 +39,7 @@ class _MainPageState extends State<MainPage> {
           setState(() {
             _index = value;
           });
-          },
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.speed), label: 'walk'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),

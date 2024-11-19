@@ -12,17 +12,17 @@ class BonfireGame extends FlameGame {
   late BonfireGameFirewood _firewood = BonfireGameFirewood();
   late BonfireGameBg _bg = BonfireGameBg();
   late SpriteAnimationComponent _fire;
+  final double _maxFireSize = 160;
+  final int _resistanceValue = 50; // _tmp 증감에 대한 고정 감소 값
   double _lowFreqEnergy = 0.0;
-  double _fireSize = 32;
-  final double _maxFireSize = 256;
+  double _fireSize = 64;
   double _time = 0.0; // 게임 진행 시간
   double _tmp = 0.0;  // 게임 시작, 종료 여부 결정 수치
-  final int _resistanceValue = 50; // _tmp 증감에 대한 고정 감소 값
   bool _isStarted = false;
   bool _isDone = false;
 
   // _tmp 값 확인용 컴포넌트
-  // late TextComponent _tmpText;
+  late TextComponent _tmpText;
 
   @override
   Future<void> onLoad() async {
@@ -39,7 +39,7 @@ class BonfireGame extends FlameGame {
     _fire = SpriteAnimationComponent(
       animation: fireAnimation,
       size: Vector2.all(_fireSize),
-      position: Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize) // 화면 중앙에 배치
+      position: Vector2(size.x/2 - _fireSize/2, size.y * 0.75 - _fireSize) // 화면 중앙에 배치
     );
 
     // BreathAnalyzer 초기화
@@ -55,15 +55,13 @@ class BonfireGame extends FlameGame {
     await add(_firewood);
     await add(_fire);
 
-    /*
     // _tmp 값 확인용
     _tmpText = TextComponent(
-      text: '_tmp: $_tmp',
-      position: Vector2(size.x/2 - 25, size.y/2 + 100),
+      text: '게이지 수치: $_tmp',
+      position: Vector2(size.x/2 - 50, size.y/2 + 100),
       textRenderer: TextPaint(style: const TextStyle(color: CupertinoColors.black)),
     );
     await add(_tmpText);
-    */
 
     // 바람 소리 감지를 시작
     _startBreathDetection();
@@ -76,12 +74,12 @@ class BonfireGame extends FlameGame {
     // 게임 진행시간 합산
     if(_isStarted) _time += dt;
     
-    // 10초마다 조건 확인 후 모닥불 크기 업데이트
-    if(_time ~/ 10 > 0 && _fireSize < _maxFireSize && _isStarted && !_isDone) {
-      _time %= 10;
-      _fireSize += 32;
+    // 5초마다 조건 확인 후 모닥불 크기 업데이트
+    if(_time ~/ 5 > 0 && _fireSize < _maxFireSize && _isStarted && !_isDone) {
+      _time %= 5;
+      _fireSize += 16;
       _fire.size = Vector2.all(_fireSize);
-      _fire.position = Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize);
+      _fire.position = Vector2(size.x/2 - _fireSize/2, size.y * 0.75 - _fireSize);
     }
 
     // _tmp 업데이트
@@ -90,7 +88,7 @@ class BonfireGame extends FlameGame {
     if(_tmp > 200) _tmp = 200;
     
     // _tmpText 값 업데이트
-    // _tmpText.text = '_tmp: $_tmp';
+    _tmpText.text = '게이지 수치: $_tmp';
 
     // _tmp 값이 특정 수치 도달 시 게임 시작(잡음 등의 변수 방지)
     if(!_isStarted && _tmp > 100) _isStarted = true;
