@@ -22,10 +22,9 @@ class _MiniGameTestPage extends State<MiniGameTestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(padding: const EdgeInsets.all(8.0),
-          child: GameWidget(
-            game: MiniGameTest()
-          ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GameWidget(game: MiniGameTest()),
         ),
       ),
     );

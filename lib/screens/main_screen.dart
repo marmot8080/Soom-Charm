@@ -7,6 +7,7 @@ import 'package:soom_charm/screens/SettingPage.dart';
 import 'package:soom_charm/screens/MainPage.dart';
 import 'package:soom_charm/screens/LoadingPage.dart';
 import 'package:soom_charm/screens/BreathAnalyzerPage.dart';
+import 'package:soom_charm/screens/BreathPatternPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -81,25 +82,35 @@ class MainScreen extends StatelessWidget {
             child: Text('storePage'),
           ),
           SizedBox(height: 20), // 버튼 간 간격 조정
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RecorderGamePage()),
-                );
-              },
-              child: Text('RecorderGame'),
-            ),
-            SizedBox(height: 20), // 버튼 간 간격 조정
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Breathanalyzerpage()),
-                );
-              },
-              child: Text('Breath Analyzer'),
-            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RecorderGamePage()),
+              );
+            },
+            child: Text('RecorderGame'),
+          ),
+          SizedBox(height: 20), // 버튼 간 간격 조정
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Breathanalyzerpage()),
+              );
+            },
+            child: Text('Breath Analyzer'),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BreathPatternPage()),
+              );
+            },
+            child: Text('breathPattenPage'),
+          ),
         ],
       ),
       ),
