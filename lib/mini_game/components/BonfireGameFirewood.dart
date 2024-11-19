@@ -4,7 +4,7 @@ class BonfireGameFirewood extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await gameRef.loadSprite('firewood.png');
+    sprite = await gameRef.loadSprite('Bonfire_firewood.png');
 
     final spriteOriginalSize = sprite!.srcSize; // 이미지 크기
     final screenSize = gameRef.size; // 화면 크기

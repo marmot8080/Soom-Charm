@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soom_charm/widgets/DistanceBar.dart';
 
-void main() {
-  runApp(breath_pattern_page());
-}
-
-class breath_pattern_page extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: breathPatternScreen(),
-    );
-  }
-}
-
-class breathPatternScreen extends StatelessWidget {
+class BreathPatternPage extends StatelessWidget {
   final String nickname = '숨챰님'; // Dynamic nickname
   final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
   final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
@@ -25,17 +13,20 @@ class breathPatternScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 화살표 아이콘
+          icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black
+          ), // 뒤로가기 화살표 아이콘
           onPressed: () {
             Navigator.pop(context); // 이전 화면으로 돌아가기
           },
         ),
         title: Row(
           children: [
-            Image.asset(
-              'assets/images/user_icon.png', // 사용자 아이콘 이미지
-              width: 50,
-              height: 50,
+            Icon(
+              Icons.person,
+              color: Colors.black,
+              size: MediaQuery.of(context).size.width * 0.12,
             ),
             SizedBox(width: 8),
             // Blue Box with Bold Text for Nickname
@@ -169,73 +160,6 @@ class breathPatternScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Image.asset(
-                    'assets/images/setting_icon.png'), // Left bottom icon image
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Image.asset(
-                    'assets/images/shopping_icon.png'), // Middle bottom icon image
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Image.asset(
-                    'assets/images/chart_icon.png'), // Right bottom icon image
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// DistanceBar widget
-class DistanceBar extends StatelessWidget {
-  final double value; // 0.0 ~ 1.0 사이의 값
-  final Color fillColor;
-  final Color backgroundColor;
-  final double height;
-
-  const DistanceBar({
-    Key? key,
-    required this.value,
-    this.fillColor = Colors.lightGreenAccent,
-    this.backgroundColor = Colors.grey,
-    this.height = 10,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: height,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(5.0),
-      ),
-      child: Stack(
-        children: [
-          FractionallySizedBox(
-            widthFactor: value, // value 값에 따라 게이지가 차는 부분
-            child: Container(
-              decoration: BoxDecoration(
-                color: fillColor,
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

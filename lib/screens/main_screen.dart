@@ -7,7 +7,7 @@ import 'package:soom_charm/screens/SettingPage.dart';
 import 'package:soom_charm/screens/MainPage.dart';
 import 'package:soom_charm/screens/LoadingPage.dart';
 import 'package:soom_charm/screens/BreathAnalyzerPage.dart';
-import 'package:soom_charm/screens/breath_pattern_page.dart';
+import 'package:soom_charm/screens/BreathPatternPage.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -106,7 +106,7 @@ class MainScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => breath_pattern_page()),
+                MaterialPageRoute(builder: (context) => BreathPatternPage()),
               );
             },
             child: Text('breathPattenPage'),

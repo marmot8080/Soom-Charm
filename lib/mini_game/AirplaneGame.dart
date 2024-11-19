@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flame/game.dart';
 import 'package:flame/components.dart';
 import 'package:soom_charm/util/BreathAnalyzer.dart';
-import 'package:soom_charm/mini_game/components/mini_game_airplane_compo_.dart';
-import 'package:soom_charm/mini_game/components/minigame_airplane_bg.dart';
+import 'package:soom_charm/mini_game/components/AirplaneGameAirplane.dart';
+import 'package:soom_charm/mini_game/components/AirplaneGameBg.dart';
 
-class Minigame_airplane extends FlameGame {
+class AirplaneGame extends FlameGame {
   late ScrollingBackground background;
   late MiniGameAirplane airplane;
   late BreathAnalyzer breathAnalyzer;

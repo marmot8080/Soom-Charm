@@ -1,24 +1,11 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(rankingPage());
-}
-
-class rankingPage extends StatelessWidget {
+class RankingPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: RankingScreen(),
-    );
-  }
+  _RankingPage createState() => _RankingPage();
 }
 
-class RankingScreen extends StatefulWidget {
-  @override
-  _RankingScreenState createState() => _RankingScreenState();
-}
-
-class _RankingScreenState extends State<RankingScreen> {
+class _RankingPage extends State<RankingPage> {
   // 미니 게임 이름을 저장할 변수
   String miniGameTitle = 'mini game_0';
 

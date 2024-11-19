@@ -7,6 +7,7 @@ import 'package:soom_charm/widgets/PointCounter.dart';
 
 import 'package:soom_charm/screens/mini_game/MiniGameTestPage.dart';
 import 'package:soom_charm/screens/mini_game/BonfireGamePage.dart';
+import 'package:soom_charm/screens/mini_game/AirplaneGamePage.dart';
 
 class GameStagePage extends StatefulWidget {
   @override
@@ -102,7 +103,7 @@ class _GameStagePage extends State<GameStagePage> {
                     children: [
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",
-                        targetPage: MiniGameTestPage(),
+                        targetPage: AirplaneGamePage(),
                       ),
                       GameStageButton(
                         imagePath: "assets/images/lungs.png",

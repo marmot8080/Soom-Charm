@@ -23,7 +23,7 @@ class ScrollingBackground extends Component with HasGameRef {
 
     // 배경 스프라이트 로드
     final backgroundSprite =
-        await gameRef.loadSprite('airplane_minigame_backround.png');
+        await gameRef.loadSprite('Airplane_bg.png');
 
     double scaleY = gameRef.size.y / backgroundSprite.srcSize.y;
     // 배경 1

@@ -14,7 +14,7 @@ class MiniGameAirplane extends SpriteComponent with HasGameRef {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    sprite = await gameRef.loadSprite('Airplane.png');
+    sprite = await gameRef.loadSprite('Airplane_airplane.png');
 
     // 비행기의 크기와 초기 위치 설정
     final spriteOriginalSize = sprite!.srcSize;
