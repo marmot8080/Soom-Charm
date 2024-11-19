@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soom_charm/screens/MainPage.dart';
 
-class storePage extends StatelessWidget {
+class StorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +53,14 @@ class storePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.01),
             // 상점 아이템 목록
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2, // 한 줄에 두 개씩
                 crossAxisSpacing: 40, // 각 아이템 상자간의 가로 간격 늘리기
                 mainAxisSpacing: 0.5, // 각 아이템 상자간의 세로 간격 줄이기
-                childAspectRatio: 1.5, // 가로 세로 비율을 0.7로 설정하여 가로 길이 줄이기
+                childAspectRatio: 1.3, // 가로 세로 비율을 0.7로 설정하여 가로 길이 줄이기
                 children: [
                   _buildItem(3, null, 300), // 하트 3개
                   _buildItem(1, 5, 450), // 하트 1개 X 5
@@ -73,7 +74,10 @@ class storePage extends StatelessWidget {
             SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
-                // 돈벌러 가기 기능 추가 필요
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainPage(initialIndex: 0,)), // GPSTrackerPage로 이동
+                );
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),

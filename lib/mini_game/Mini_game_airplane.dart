@@ -1,10 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flame/game.dart';
-import 'package:flame/flame.dart';
-import 'package:flame/sprite.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
-import 'package:soom_charm/util/breath_analyzer.dart';
+import 'package:soom_charm/util/BreathAnalyzer.dart';
 import 'package:soom_charm/mini_game/components/mini_game_airplane_compo_.dart';
 import 'package:soom_charm/mini_game/components/minigame_airplane_bg.dart';
 

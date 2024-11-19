@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 class GPSTracker extends ChangeNotifier {
-  double totalDistance = 0.0;
-  double speedInKmh = 0.0;
-  Position? _previousPosition;
-  DateTime? _lastAlertTime;
+  double totalDistance = 0.0; // 총 이동거리
+  double speedInKmh = 0.0;  // 현재 속도
+  double speedLimit = 30; // 제한 속도
+  Position? _previousPosition;  // 이전 저장 위치
+  DateTime? _lastAlertTime; // 최근 경고 알림 시간
+
+  GPSTracker({Key? key, required this.totalDistance}) : super();
 
   // 위치 추적 시작
   Future<void> startTracking() async {
@@ -27,7 +30,7 @@ class GPSTracker extends ChangeNotifier {
     Geolocator.getPositionStream(
         locationSettings: const LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 10, // 최소 10미터 이동 후 업데이트
+        distanceFilter: 20, // 최소 20미터 이동 후 업데이트
     )).listen((Position position) {
 
       if (_previousPosition != null) {
@@ -35,16 +38,17 @@ class GPSTracker extends ChangeNotifier {
         double speedInMetersPerSecond = position.speed; // 속도(m/s)
         speedInKmh = speedInMetersPerSecond * 3.6; // km/h로 변환
 
-        // 시속 30km 이상일 경우 경고
-        if (speedInKmh > 30) {
+        // 제한 속도 초과시 경고
+        if (speedInKmh > speedLimit) {
           DateTime now = DateTime.now();
 
-          // 마지막 경고 시간이 없거나, 30초 이상 지났을 때
+          // 경고가 뜬 적이 없거나, 이전 경고 시간으로부터 30초를 초과했을 때
           if (_lastAlertTime == null || now.difference(_lastAlertTime!).inSeconds > 30) {
             _lastAlertTime = now;  // 현재 시간으로 업데이트
-            notifyListeners();     // 경고 메시지 알림
+            notifyListeners();     // 제한 속도 초과시 알림
           }
         } else {
+          // 총 이동거리 합산 (현재 위치 - 최근 위치)
           totalDistance += Geolocator.distanceBetween(
             _previousPosition!.latitude,
             _previousPosition!.longitude,
@@ -54,7 +58,7 @@ class GPSTracker extends ChangeNotifier {
         }
       }
 
-      _previousPosition = position;
+      _previousPosition = position; // 최근 위치 업데이트
       notifyListeners(); // 거리 변경 시 알림
     });
   }

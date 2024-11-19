@@ -26,7 +26,7 @@ class _OnOffButtonState extends State<OnOffButton> {
       style: ElevatedButton.styleFrom(
         backgroundColor: isOn ? Color(0xFF77BCFF) : Color(0xFFA3D2FF),
         shape: CircleBorder(),
-        padding: EdgeInsets.all(100),
+        padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.11),
         elevation: 12,
         side: BorderSide(
           color: isOn ? Color(0xFFA3D2FF) : Color(0xFF77BCFF),
@@ -35,7 +35,7 @@ class _OnOffButtonState extends State<OnOffButton> {
       ),
       child: Text(
         isOn ? 'STOP' : 'START',
-        style: TextStyle(fontSize: 48, color: Colors.white, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.045, color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
   }
