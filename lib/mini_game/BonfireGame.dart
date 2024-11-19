@@ -12,7 +12,7 @@ class BonfireGame extends FlameGame {
   late BonfireGameFirewood _firewood = BonfireGameFirewood();
   late BonfireGameBg _bg = BonfireGameBg();
   late SpriteAnimationComponent _fire;
-  final double _maxFireSize = 256;
+  final double _maxFireSize = 160;
   final int _resistanceValue = 50; // _tmp 증감에 대한 고정 감소 값
   double _lowFreqEnergy = 0.0;
   double _fireSize = 64;
@@ -39,7 +39,7 @@ class BonfireGame extends FlameGame {
     _fire = SpriteAnimationComponent(
       animation: fireAnimation,
       size: Vector2.all(_fireSize),
-      position: Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize) // 화면 중앙에 배치
+      position: Vector2(size.x/2 - _fireSize/2, size.y * 0.75 - _fireSize) // 화면 중앙에 배치
     );
 
     // BreathAnalyzer 초기화
@@ -57,7 +57,7 @@ class BonfireGame extends FlameGame {
 
     // _tmp 값 확인용
     _tmpText = TextComponent(
-      text: '_tmp: $_tmp',
+      text: '게이지 수치: $_tmp',
       position: Vector2(size.x/2 - 50, size.y/2 + 100),
       textRenderer: TextPaint(style: const TextStyle(color: CupertinoColors.black)),
     );
@@ -77,9 +77,9 @@ class BonfireGame extends FlameGame {
     // 5초마다 조건 확인 후 모닥불 크기 업데이트
     if(_time ~/ 5 > 0 && _fireSize < _maxFireSize && _isStarted && !_isDone) {
       _time %= 5;
-      _fireSize += 32;
+      _fireSize += 16;
       _fire.size = Vector2.all(_fireSize);
-      _fire.position = Vector2(size.x/2 - _fireSize/2, size.y/2 - _fireSize);
+      _fire.position = Vector2(size.x/2 - _fireSize/2, size.y * 0.75 - _fireSize);
     }
 
     // _tmp 업데이트
