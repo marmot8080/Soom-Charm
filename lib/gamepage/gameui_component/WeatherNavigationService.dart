@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:contact/gamepage/weather/Cloud_UI.dart';
-import 'package:contact/gamepage/weather/Rain_UI.dart';
-import 'package:contact/gamepage/weather/Snow_UI.dart';
-import '../Air_Bower_Game.dart';
+import 'package:contact/gamepage/weather/weather_component/Cloud_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Sun_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Rain_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Snow_UI.dart';
 import 'WeatherInfoViewModel.dart';
 
 class WeatherNavigationService {
@@ -18,7 +18,7 @@ class WeatherNavigationService {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CloudUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
+            builder: (context) => SunUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
           ),
         );
       } else if (weatherDescription.contains('구름') || weatherDescription.contains('흐림')) {
@@ -36,7 +36,7 @@ class WeatherNavigationService {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => RainUI(), // windStrength를 전달하지 않음
+            builder: (context) => RainUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
           ),
         );
       } else if (weatherDescription.contains('눈')) {
@@ -47,23 +47,7 @@ class WeatherNavigationService {
             builder: (context) => SnowUI(windStrengthDescription: windStrengthDescription), // windStrength를 전달하지 않음
           ),
         );
-      } else {
-        // 기본 게임 화면 (바람에 대한 설정을 할 수 있는 화면)
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => AirBlowerGame(), // windStrength를 전달하지 않음
-          ),
-        );
       }
-    } else {
-      // weatherDescription이 null일 경우 기본 게임 화면으로 이동
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AirBlowerGame(), // windStrength를 전달하지 않음
-        ),
-      );
     }
   }
 }

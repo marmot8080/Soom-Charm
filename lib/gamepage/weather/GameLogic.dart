@@ -1,97 +1,29 @@
+import 'package:contact/gamepage/weather/BalloonLogic.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:lottie/lottie.dart';
 import 'dart:async';
 
-class RainUI extends StatefulWidget {
-  const RainUI({super.key});
+class GameLogic extends StatefulWidget {
+  final String windStrengthDescription; // 바람 세기 정보 전달
+  final String weatherDescription;
+
+  const GameLogic({super.key, required this.windStrengthDescription, required this.weatherDescription});
 
   @override
-  _RainUIState createState() => _RainUIState();
+  GameLogicState createState() => GameLogicState();
 }
 
-class _RainUIState extends State<RainUI> {
-  bool _showGame = false; // 게임 화면 전환 여부
-
-  @override
-  void initState() {
-    super.initState();
-    _showCharacterIntro(); // 캐릭터 소개 후 게임 시작
-  }
-
-  void _showCharacterIntro() {
-    Future.delayed(Duration(seconds: 5), () {
-      setState(() {
-        _showGame = true; // 게임 화면 표시
-      });
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _showGame
-          ? GameScreen() // 게임 화면으로 전환
-          : CharacterIntroScreen(), // 캐릭터 소개 화면
-    );
-  }
-}
-
-class CharacterIntroScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // 배경 애니메이션
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: Lottie.asset(
-            'assets/weather/weather_rain.json',
-            fit: BoxFit.fitHeight,
-          ),
-        ),
-        // 캐릭터와 말풍선
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset('assets/weather/character/character_rain.json', width: 200, height: 200),
-              SizedBox(height: 20),
-              Container(
-                padding: EdgeInsets.all(16),
-                margin: EdgeInsets.symmetric(horizontal: 24),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  "안녕하세요! 오늘의 날씨는 흐리네요.\n바람은 약풍으로 평소보다 좀더 힘쓰셔야해요!",
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class GameScreen extends StatefulWidget {
-  @override
-  _GameScreenState createState() => _GameScreenState();
-}
-
-class _GameScreenState extends State<GameScreen> {
+class GameLogicState extends State<GameLogic> {
   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
   double _balloonSize = 50.0; // 풍선의 초기 크기
-  double _soundThreshold = 50.0; // 바람 불기 감지 임계값
+  final double _soundThreshold = 50.0; // 바람 불기 감지 임계값
   bool _gameOver = false;
-  double _maxBalloonSize = 500.0; // 게임 승리를 위한 최대 풍선 크기
+  final double _maxBalloonSize = 500.0; // 게임 승리를 위한 최대 풍선 크기
   bool _bursting = false; // 풍선 터짐 여부
+  double _balloonGrowthRate = 7.0; // 풍선 크기 증가율 (바람 세기에 따라 달라짐)
 
   Timer? _gameTimer;
   int _elapsedTime = 0; // 경과 시간 기록
@@ -99,8 +31,10 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeRecorder();
-    _startTimer();
+    _adjustGrowthRateBasedOnWindStrength(); // 가장 먼저 실행되도록 수정
+    _initializeRecorder().then((_) {
+      _startTimer(); // 초기화가 완료된 후 타이머 시작
+    });
   }
 
   Future<void> _initializeRecorder() async {
@@ -119,28 +53,47 @@ class _GameScreenState extends State<GameScreen> {
       if (decibels != null && !_gameOver) {
         setState(() {
           if (decibels > _soundThreshold) {
-            _balloonSize += 7.0; // 바람을 불 때마다 풍선 크기가 증가
+            _balloonSize += _balloonGrowthRate; // 바람을 불 때마다 풍선 크기가 증가
           } else {
             _balloonSize -= 2.0; // 바람이 없으면 풍선이 약간 줄어듦
           }
           _balloonSize = _balloonSize.clamp(50.0, _maxBalloonSize);
 
-          // 최대 크기에 도달하면 풍선 터지는 애니메이션 시작
+          // 최대 크기에 도달하면 풍선 터짐 상태로 변경
           if (_balloonSize >= _maxBalloonSize && !_bursting) {
             _bursting = true;
-            _showBurstAnimation();
+            _handleBurst();
           }
         });
       }
     });
   }
 
-  void _showBurstAnimation() {
-    // 풍선 터짐 애니메이션 후 게임 종료
-    setState(() {
-      _balloonSize = 0; // 풍선을 작아지게 하여 터짐 효과
-    });
+  void _adjustGrowthRateBasedOnWindStrength() {
+    // windStrengthDescription에 따라 풍선의 성장 속도 조정
+    if (kDebugMode) {
+      print("현재 바람 세기: ${widget.windStrengthDescription}");
+    }
+    switch (widget.windStrengthDescription) {
+      case '강풍':
+        _balloonGrowthRate = 10.0; // 강풍일 경우 성장 속도 증가
+        break;
+      case '약풍':
+        _balloonGrowthRate = 7.0; // 약풍일 경우 기본 성장 속도
+        break;
+      case '미풍':
+        _balloonGrowthRate = 5.0; // 미풍일 경우 성장 속도 감소
+        break;
+      default:
+        _balloonGrowthRate = 7.0; // 기본값
+    }
+    if (kDebugMode) {
+      print("풍선 성장 속도: $_balloonGrowthRate");
+    }
+  }
 
+  void _handleBurst() {
+    // 터짐 상태 후 1초 뒤 게임 종료
     Future.delayed(Duration(seconds: 1), () {
       _stopGame("축하합니다! 풍선이 터졌습니다. 경과 시간: $_elapsedTime초");
     });
@@ -196,6 +149,25 @@ class _GameScreenState extends State<GameScreen> {
     super.dispose();
   }
 
+  // 날씨 조건에 따라 Lottie 파일 경로 선택
+  String _getLottieFilePath() {
+    // if (kDebugMode) {
+    //   print(widget.weatherDescription);
+    // }
+    switch (widget.weatherDescription) {
+      case '맑음':
+        return 'assets/weather/weather_sun.json'; // 맑음
+      case '눈':
+        return 'assets/weather/weather_snow.json'; // 눈
+      case '비':
+        return 'assets/weather/weather_rain.json'; // 비
+      case '흐림':
+        return 'assets/weather/weather_cloud.json'; // 구름
+      default:
+        return '0'; // 기본값
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double balloonTopPosition = (MediaQuery.of(context).size.height - _balloonSize * 1.5)
@@ -203,12 +175,12 @@ class _GameScreenState extends State<GameScreen> {
 
     return Stack(
       children: [
-        // 배경 애니메이션
+        // 배경 애니메이션 (조건에 따른 파일 사용)
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Lottie.asset(
-            'assets/weather/weather_rain.json',
+            _getLottieFilePath(), // 조건에 따라 파일 선택
             fit: BoxFit.fitHeight,
           ),
         ),
@@ -236,24 +208,6 @@ class _GameScreenState extends State<GameScreen> {
           child: BalloonWidget(size: _balloonSize, bursting: _bursting),
         ),
       ],
-    );
-  }
-}
-
-class BalloonWidget extends StatelessWidget {
-  final double size;
-  final bool bursting;
-
-  BalloonWidget({required this.size, required this.bursting});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size,
-      height: size,
-      child: bursting
-          ? Lottie.asset('assets/balloon_exploded.json') // 터지는 애니메이션 경로
-          : Lottie.asset('assets/balloon.json'), // 풍선 애니메이션 경로
     );
   }
 }

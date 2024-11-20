@@ -1,6 +1,6 @@
-import 'package:contact/gamepage/weather/Rain_UI.dart';
-import 'package:contact/gamepage/weather/Snow_UI.dart';
-import 'package:contact/gamepage/weather/Sun_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Rain_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Snow_UI.dart';
+import 'package:contact/gamepage/weather/weather_component/Sun_UI.dart';
 import 'package:flutter/material.dart';
 import 'package:contact/start.dart';
 import 'package:contact/UserLogin/login.dart';
@@ -9,7 +9,7 @@ import 'package:contact/mainpage/MainScreen.dart';
 import 'package:contact/mainpage/Settings_test.dart';
 import 'package:contact/userlogin/userfind/PasswordFind.dart';
 import 'package:contact/userlogin/userfind/IdFind.dart';
-import 'package:contact/gamepage/Air_Bower_Game.dart';
+import 'package:contact/gamepage/AwsMatching.dart';
 import 'package:contact/gamepage/GameUI.dart';
 import 'package:contact/roompage/Room_Create.dart';
 import 'package:contact/roompage/Room_List_Screen.dart';
@@ -17,7 +17,7 @@ import 'package:contact/roompage/Room_Detail_Screen.dart';
 import 'package:provider/provider.dart';
 
 import 'gamepage/gameui_component/WeatherInfoViewModel.dart';
-import 'gamepage/weather/Cloud_UI.dart';
+import 'gamepage/weather/weather_component/Cloud_UI.dart';
 
 Map<String, WidgetBuilder> buildRoutes() {
   return {
@@ -32,17 +32,23 @@ Map<String, WidgetBuilder> buildRoutes() {
     '/userlogin/userfind/PasswordFind': (context) => const PasswordFind(),
     '/userlogin/userfind/IdFind': (context) => const IdFindPage(),
 
-    '/gamepage/Air_Bower_Game': (context) => AirBlowerGame(),
+    '/gamepage/AwsMatching': (context) => AwsMatching(),
     '/gamepage/GameUI': (context) => GameUI(), // 인수 필요 없음
 
-    '/gamepage/weather/Rain_UI': (context) => RainUI(),
+    '/gamepage/weather/weather_component/Rain_UI': (context) {
+      String windStrengthDescription = context.read<WeatherInfoViewModel>().getWindStrengthDescription();
+      return RainUI(windStrengthDescription: windStrengthDescription);
+    },
     // '/gamepage/weather/Cloud_UI': (context) => CloudUI(),
-    '/gamepage/weather/Cloud_UI': (context) {
+    '/gamepage/weather/weather_component/Cloud_UI': (context) {
       String windStrengthDescription = context.read<WeatherInfoViewModel>().getWindStrengthDescription();
       return CloudUI(windStrengthDescription: windStrengthDescription);
     },
-    '/gamepage/weather/Sun_UI': (context) => SunUI(),
-    '/gamepage/weather/Snow_UI': (context) {
+    '/gamepage/weather/weather_component/Sun_UI': (context) {
+      String windStrengthDescription = context.read<WeatherInfoViewModel>().getWindStrengthDescription();
+      return SunUI(windStrengthDescription: windStrengthDescription);
+    },
+    '/gamepage/weather/weather_component/Snow_UI': (context) {
       String windStrengthDescription = context.read<WeatherInfoViewModel>().getWindStrengthDescription();
       return SnowUI(windStrengthDescription: windStrengthDescription);
     },
