@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class MiniGameAirplane extends SpriteComponent with HasGameRef {
   double velocity = 0.0; // 현재 속도
-  final double gravity = 5.0; // 중력 가속도 (픽셀/초^2)
+  final double gravity = 20; // 중력 가속도 (아래로 내려가는 속도)
   final double maxAngle = 0.5; // 최대 회전 각도 (라디안) 약 28.65도
 
   // lerp 함수 정의
@@ -19,7 +19,7 @@ class MiniGameAirplane extends SpriteComponent with HasGameRef {
     // 비행기의 크기와 초기 위치 설정
     final spriteOriginalSize = sprite!.srcSize;
     final screenSize = gameRef.size;
-    double scaleFactor = screenSize.y / spriteOriginalSize.y * 0.1;
+    double scaleFactor = screenSize.y / spriteOriginalSize.y * 0.15;
 
     size = spriteOriginalSize * scaleFactor;
     position = Vector2(screenSize.x / 2 - size.x / 2, screenSize.y / 4);
@@ -36,10 +36,10 @@ class MiniGameAirplane extends SpriteComponent with HasGameRef {
     // 회전 각도 조정
     if (velocity > 0) {
       // 아래로 내려갈 때
-      angle = lerp(angle, maxAngle, 3 * dt); // 오른쪽 아래 대각선 (부드럽게)
+      angle = lerp(angle, maxAngle, 4 * dt); // 오른쪽 아래 대각선 (부드럽게)
     } else {
       // 위로 올라갈 때
-      angle = lerp(angle, -maxAngle, 1 * dt); // 오른쪽 위 대각선 (부드럽게)
+      angle = lerp(angle, -maxAngle, 3 * dt); // 오른쪽 위 대각선 (부드럽게)
     }
 
     // 바닥 충돌 처리

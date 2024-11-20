@@ -44,14 +44,25 @@ class Minigame_airplane extends FlameGame {
 
     breathAnalyzer = BreathAnalyzer(
       onEnergyDetected: (lowFreqEnergy) {
+        if (isGameOver) return;
+
         if (lowFreqEnergy > 50) {
-          airplane.position.y -= 10;
+          // 바람 소리가 감지되면 위로 상승
+          airplane.velocity = -10;
         } else {
-          airplane.position.y += 5;
+          // 바람 소리가 없으면 중력에 의해 하강
+          airplane.velocity += airplane.gravity;
         }
 
+        // 비행기가 화면 아래로 떨어지면 게임 종료
         if (!isGameOver && airplane.position.y >= size.y - airplane.size.y) {
           _triggerGameOver();
+        }
+
+        // 비행기가 화면 위를 넘어가지 않도록 제한
+        if (airplane.position.y < 0) {
+          airplane.position.y = 0;
+          airplane.velocity = 0;
         }
       },
     );
@@ -65,13 +76,11 @@ class Minigame_airplane extends FlameGame {
 
     if (isGameOver) return; // 게임 종료 시 업데이트 멈춤
 
-    airplane.velocity += airplane.gravity * dt;
     airplane.position.y += airplane.velocity * dt;
 
     if (airplane.position.y >= size.y - airplane.size.y) {
       airplane.position.y = size.y - airplane.size.y;
       airplane.velocity = 0.0;
-
       if (!isGameOver) {
         _triggerGameOver();
       }
