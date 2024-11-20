@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(
                               width: 50,
                               height: 50,
-                              child: Image.asset('assets/kakao.png'),
+                              child: Image.asset('assets/loginimage/kakao.png'),
                             ),
                             const SizedBox(height: 5),
                             const Text(
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(
                               width: 50,
                               height: 50,
-                              child: Image.asset('assets/google.png'),
+                              child: Image.asset('assets/loginimage/google.png'),
                             ),
                             const SizedBox(height: 5),
                             const Text(
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(
                               width: 50,
                               height: 50,
-                              child: Image.asset('assets/apple.png'),
+                              child: Image.asset('assets/loginimage/apple.png'),
                             ),
                             const SizedBox(height: 5),
                             const Text(

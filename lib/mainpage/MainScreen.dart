@@ -122,7 +122,7 @@ class MainScreen extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.shopping_cart, size: 40),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/gamepage/weather/Rain_UI');
+                      Navigator.pushNamed(context, '/gamepage/AwsMatching');
                     },
                   ),
                   Icon(Icons.bar_chart, size: 40),
