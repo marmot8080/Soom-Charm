@@ -29,7 +29,7 @@ class BonfireGame extends FlameGame {
     super.onLoad();
 
     // 스프라이트 시트 로드
-    final fireImage = await Flame.images.load('fire_sprite_sheet.png');
+    final fireImage = await Flame.images.load('Bonfire_fire_sprite_sheet.png');
     // 스프라이트 시트의 각 프레임 크기 지정
     final spriteSheet = SpriteSheet(image: fireImage, srcSize: Vector2(1342, 1396));
     // 스프라이트 애니메이션 생성
