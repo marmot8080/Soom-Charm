@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class BreathPatternPage extends StatelessWidget {
-  final String nickname = '숨챰님'; // Dynamic nickname
+  final String nickname = 'zoe'; // Dynamic nickname
   final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
   final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
 
@@ -13,10 +14,7 @@ class BreathPatternPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black
-          ), // 뒤로가기 화살표 아이콘
+          icon: Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 화살표 아이콘
           onPressed: () {
             Navigator.pop(context); // 이전 화면으로 돌아가기
           },
@@ -144,16 +142,64 @@ class BreathPatternPage extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.bold, // Make text bold
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 11), // Space between title and chart
+                  SizedBox(height: 16), // Space between title and chart
                   Expanded(
-                    child: Center(
-                        //child: Image.asset(
-                        //'assets/breath_pattern.png', // Placeholder image path for chart
-                        // width: double.infinity,
-                        //fit: BoxFit.contain,
-                        //),
+                    child: LineChart(
+                      LineChartData(
+                        gridData: FlGridData(show: true),
+                        titlesData: FlTitlesData(
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              getTitlesWidget: (value, meta) {
+                                switch (value.toInt()) {
+                                  case 0:
+                                    return Text('13');
+                                  case 1:
+                                    return Text('14');
+                                  case 2:
+                                    return Text('15');
+                                  case 3:
+                                    return Text('16');
+                                  case 4:
+                                    return Text('17');
+                                  case 5:
+                                    return Text('18');
+                                  case 6:
+                                    return Text('19');
+                                  default:
+                                    return Text('');
+                                }
+                              },
+                            ),
+                          ),
                         ),
+                        borderData: FlBorderData(show: true),
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: [
+                              FlSpot(0, 20),
+                              FlSpot(1, 23),
+                              FlSpot(2, 22),
+                              FlSpot(3, 24),
+                              FlSpot(4, 22),
+                              FlSpot(5, 25),
+                              FlSpot(6, 26),
+                            ],
+                            isCurved: true,
+                            barWidth: 4,
+                            isStrokeCapRound: true,
+                            belowBarData: BarAreaData(show: false),
+                            dotData: FlDotData(show: true),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),

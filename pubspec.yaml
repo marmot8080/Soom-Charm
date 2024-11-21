@@ -35,6 +35,9 @@ dependencies:
   geolocator: ^13.0.1
   flame: ^1.19.0
   shared_preferences: ^2.3.3
+  fl_chart:
+    git:
+      url: https://github.com/imaNNeoFighT/fl_chart.git
 
 
 
