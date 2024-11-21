@@ -1,11 +1,38 @@
+import 'dart:async'; // Timer를 위해 필요
 import 'package:flutter/material.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class BreathPatternPage extends StatelessWidget {
+class BreathPatternPage extends StatefulWidget {
+  @override
+  _BreathPatternPageState createState() => _BreathPatternPageState();
+}
+
+class _BreathPatternPageState extends State<BreathPatternPage> {
   final String nickname = 'zoe'; // Dynamic nickname
   final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
   final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
+  double _progress = 0.0; // DistanceBar의 초기 progress 값
+
+  @override
+  void initState() {
+    super.initState();
+    _startAnimation(); // 페이지 로드 시 애니메이션 시작
+  }
+
+  void _startAnimation() {
+    // Timer를 사용하여 progress를 점진적으로 증가
+    Timer.periodic(Duration(milliseconds: 50), (timer) {
+      if (_progress >= 0.6) {
+        // 목표치(60%)에 도달하면 타이머 종료
+        timer.cancel();
+      } else {
+        setState(() {
+          _progress += 0.02; // Progress 값을 0.02씩 증가
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +95,6 @@ class BreathPatternPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  // Dynamic Total Distance Text
                   Text.rich(
                     TextSpan(
                       children: [
@@ -92,7 +118,6 @@ class BreathPatternPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  // Dynamic Text with Remaining Distance
                   Text.rich(
                     TextSpan(
                       children: [
@@ -112,8 +137,14 @@ class BreathPatternPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  DistanceBar(
-                    value: 0.6, // Example progress value (60%)
+                  // DistanceBar 애니메이션 추가
+                  TweenAnimationBuilder(
+                    tween: Tween<double>(begin: 0.0, end: _progress),
+                    duration: Duration(seconds: 2),
+                    builder: (context, double value, child) {
+                      return DistanceBar(
+                          value: value); // DistanceBar에 애니메이션 값 전달
+                    },
                   ),
                   SizedBox(height: 4),
                   Text(
