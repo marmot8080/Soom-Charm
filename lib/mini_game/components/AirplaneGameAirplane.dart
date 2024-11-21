@@ -39,7 +39,7 @@ class MiniGameAirplane extends SpriteComponent with HasGameRef {
       angle = lerp(angle, maxAngle, 3 * dt); // 오른쪽 아래 대각선 (부드럽게)
     } else {
       // 위로 올라갈 때
-      angle = lerp(angle, -maxAngle, 1 * dt); // 오른쪽 위 대각선 (부드럽게)
+      angle = lerp(angle, -maxAngle, 4 * dt); // 오른쪽 위 대각선 (부드럽게)
     }
 
     // 바닥 충돌 처리
