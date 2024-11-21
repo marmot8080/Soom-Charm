@@ -22,7 +22,7 @@ class _MyApp extends State<MyApp> {
     spManager.initInstance();
 
     spManager.setHeartCount(6);
-    spManager.setPoint(0);
+    spManager.setPoint(5000);
     spManager.setTotalDistance(0.99);
   }
 
