@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:soom_charm/screens/SettingPage.dart';
+import 'package:soom_charm/screens/RankingPage.dart';
 
 class BreathPatternPage extends StatefulWidget {
   @override
@@ -22,13 +23,13 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
   }
 
   void _startAnimation() {
-    Timer.periodic(Duration(milliseconds: 20), (timer) {
+    Timer.periodic(Duration(milliseconds: 5), (timer) {
       // 타이머 간격을 줄임
       if (_progress >= 0.6) {
         timer.cancel();
       } else {
         setState(() {
-          _progress += 0.02; // Progress 값을 점진적으로 증가
+          _progress += 0.04; // Progress 값을 점진적으로 증가
         });
       }
     });
@@ -164,7 +165,7 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 22),
             // Line Chart Section
             Container(
               width: 290,
@@ -243,6 +244,33 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                     ),
                   ),
                 ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 50,
+              margin: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[100], // 버튼 배경색
+                  foregroundColor: Colors.black, // 버튼 텍스트 색상
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RankingPage()),
+                  );
+                },
+                child: Text(
+                  'Game Ranking',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
