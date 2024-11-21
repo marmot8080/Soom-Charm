@@ -2,6 +2,7 @@ import 'dart:async'; // Timer를 위해 필요
 import 'package:flutter/material.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:soom_charm/screens/SettingPage.dart';
 
 class BreathPatternPage extends StatefulWidget {
   @override
@@ -21,14 +22,13 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
   }
 
   void _startAnimation() {
-    // Timer를 사용하여 progress를 점진적으로 증가
-    Timer.periodic(Duration(milliseconds: 50), (timer) {
+    Timer.periodic(Duration(milliseconds: 20), (timer) {
+      // 타이머 간격을 줄임
       if (_progress >= 0.6) {
-        // 목표치(60%)에 도달하면 타이머 종료
         timer.cancel();
       } else {
         setState(() {
-          _progress += 0.02; // Progress 값을 0.02씩 증가
+          _progress += 0.02; // Progress 값을 점진적으로 증가
         });
       }
     });
@@ -73,6 +73,18 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
           ],
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings, color: Colors.black), // 설정 아이콘
+            onPressed: () {
+              // 설정 페이지로 이동
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -137,13 +149,11 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                     ),
                   ),
                   SizedBox(height: 8),
-                  // DistanceBar 애니메이션 추가
                   TweenAnimationBuilder(
                     tween: Tween<double>(begin: 0.0, end: _progress),
                     duration: Duration(seconds: 2),
                     builder: (context, double value, child) {
-                      return DistanceBar(
-                          value: value); // DistanceBar에 애니메이션 값 전달
+                      return DistanceBar(value: value);
                     },
                   ),
                   SizedBox(height: 4),
