@@ -36,6 +36,10 @@ dependencies:
   flame: ^1.19.0
   shared_preferences: ^2.3.3
   audioplayers: ^6.1.0
+  fl_chart:
+    git:
+      url: https://github.com/imaNNeoFighT/fl_chart.git
+  
 
 
   # The following adds the Cupertino Icons font to your application.

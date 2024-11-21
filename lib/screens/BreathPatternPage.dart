@@ -1,10 +1,39 @@
+import 'dart:async'; // Timer를 위해 필요
 import 'package:flutter/material.dart';
 import 'package:soom_charm/widgets/DistanceBar.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:soom_charm/screens/SettingPage.dart';
+import 'package:soom_charm/screens/RankingPage.dart';
 
-class BreathPatternPage extends StatelessWidget {
-  final String nickname = '숨챰님'; // Dynamic nickname
+class BreathPatternPage extends StatefulWidget {
+  @override
+  _BreathPatternPageState createState() => _BreathPatternPageState();
+}
+
+class _BreathPatternPageState extends State<BreathPatternPage> {
+  final String nickname = 'zoe'; // Dynamic nickname
   final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
   final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
+  double _progress = 0.0; // DistanceBar의 초기 progress 값
+
+  @override
+  void initState() {
+    super.initState();
+    _startAnimation(); // 페이지 로드 시 애니메이션 시작
+  }
+
+  void _startAnimation() {
+    Timer.periodic(Duration(milliseconds: 5), (timer) {
+      // 타이머 간격을 줄임
+      if (_progress >= 0.6) {
+        timer.cancel();
+      } else {
+        setState(() {
+          _progress += 0.04; // Progress 값을 점진적으로 증가
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +42,7 @@ class BreathPatternPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(
-              Icons.arrow_back,
-              color: Colors.black
-          ), // 뒤로가기 화살표 아이콘
+          icon: Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 화살표 아이콘
           onPressed: () {
             Navigator.pop(context); // 이전 화면으로 돌아가기
           },
@@ -48,6 +74,18 @@ class BreathPatternPage extends StatelessWidget {
           ],
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.settings, color: Colors.black), // 설정 아이콘
+            onPressed: () {
+              // 설정 페이지로 이동
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -70,7 +108,6 @@ class BreathPatternPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  // Dynamic Total Distance Text
                   Text.rich(
                     TextSpan(
                       children: [
@@ -94,7 +131,6 @@ class BreathPatternPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  // Dynamic Text with Remaining Distance
                   Text.rich(
                     TextSpan(
                       children: [
@@ -114,8 +150,12 @@ class BreathPatternPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 8),
-                  DistanceBar(
-                    value: 0.6, // Example progress value (60%)
+                  TweenAnimationBuilder(
+                    tween: Tween<double>(begin: 0.0, end: _progress),
+                    duration: Duration(seconds: 2),
+                    builder: (context, double value, child) {
+                      return DistanceBar(value: value);
+                    },
                   ),
                   SizedBox(height: 4),
                   Text(
@@ -125,7 +165,7 @@ class BreathPatternPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 22),
             // Line Chart Section
             Container(
               width: 290,
@@ -144,18 +184,93 @@ class BreathPatternPage extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.bold, // Make text bold
                     ),
+                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 11), // Space between title and chart
+                  SizedBox(height: 16), // Space between title and chart
                   Expanded(
-                    child: Center(
-                        //child: Image.asset(
-                        //'assets/breath_pattern.png', // Placeholder image path for chart
-                        // width: double.infinity,
-                        //fit: BoxFit.contain,
-                        //),
+                    child: LineChart(
+                      LineChartData(
+                        gridData: FlGridData(show: true),
+                        titlesData: FlTitlesData(
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          bottomTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              getTitlesWidget: (value, meta) {
+                                switch (value.toInt()) {
+                                  case 0:
+                                    return Text('13');
+                                  case 1:
+                                    return Text('14');
+                                  case 2:
+                                    return Text('15');
+                                  case 3:
+                                    return Text('16');
+                                  case 4:
+                                    return Text('17');
+                                  case 5:
+                                    return Text('18');
+                                  case 6:
+                                    return Text('19');
+                                  default:
+                                    return Text('');
+                                }
+                              },
+                            ),
+                          ),
                         ),
+                        borderData: FlBorderData(show: true),
+                        lineBarsData: [
+                          LineChartBarData(
+                            spots: [
+                              FlSpot(0, 20),
+                              FlSpot(1, 23),
+                              FlSpot(2, 22),
+                              FlSpot(3, 24),
+                              FlSpot(4, 22),
+                              FlSpot(5, 25),
+                              FlSpot(6, 26),
+                            ],
+                            isCurved: true,
+                            barWidth: 4,
+                            isStrokeCapRound: true,
+                            belowBarData: BarAreaData(show: false),
+                            dotData: FlDotData(show: true),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 50,
+              margin: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[100], // 버튼 배경색
+                  foregroundColor: Colors.black, // 버튼 텍스트 색상
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RankingPage()),
+                  );
+                },
+                child: Text(
+                  'Game Ranking',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],
