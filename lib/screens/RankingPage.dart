@@ -34,7 +34,12 @@ class _RankingPage extends State<RankingPage> {
           'Ranking',
           style: TextStyle(fontSize: 36), // Increase font size
         ),
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black), // 뒤로가기 화살표 아이콘
+          onPressed: () {
+            Navigator.pop(context); // 이전 화면으로 돌아가기
+          },
+        ),
         centerTitle: true,
       ),
       body: Padding(

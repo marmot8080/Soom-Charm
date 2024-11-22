@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:soom_charm/util/SharedPreferenceManager.dart';
 import 'package:soom_charm/screens/MainPage.dart';
 
 class PointCounter extends StatefulWidget {
   const PointCounter({Key? key}) : super(key: key);
 
   @override
-  _PointCounterState createState() => _PointCounterState();
+  _PointCounter createState() => _PointCounter();
 }
 
-class _PointCounterState extends State<PointCounter> {
-  int point = 0;
+class _PointCounter extends State<PointCounter> {
+  late SharedPreferenceManager _spManager;
+  late int _point;
+  late double _widgetSize;
 
   @override
   void initState() {
     super.initState();
+
     _initializePointCount();
   }
 
   Future<void> _initializePointCount() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      point = prefs.getInt('point') ?? 0; // SharedPreferences에서 포인트 가져오기
-    });
-  }
+    _spManager = SharedPreferenceManager();
+    _spManager.initInstance();
 
-  Future<void> _refreshPointCount() async {
-    final prefs = await SharedPreferences.getInstance();
+    _point = await _spManager.getPoint() ?? 0;
+
     setState(() {
-      point = prefs.getInt('point') ?? 0; // 포인트 갱신
+      _widgetSize = MediaQuery.of(context).size.width * 0.04;
     });
   }
 
@@ -36,7 +36,7 @@ class _PointCounterState extends State<PointCounter> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.of(context).size.height * 0.001,
+        horizontal: MediaQuery.of(context).size.width * 0.005,
         vertical: MediaQuery.of(context).size.height * 0.001,
       ),
       decoration: BoxDecoration(
@@ -50,12 +50,12 @@ class _PointCounterState extends State<PointCounter> {
               Icon(
                 Icons.monetization_on,
                 color: Color(0xFFFFC648),
-                size: MediaQuery.of(context).size.height * 0.025,
+                size: _widgetSize,
               ),
               Text(
-                ' $point',
+                ' $_point',
                 style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.025,
+                  fontSize: _widgetSize,
                   color: Colors.black,
                 ),
               ),
@@ -66,12 +66,11 @@ class _PointCounterState extends State<PointCounter> {
                     context,
                     MaterialPageRoute(builder: (context) => MainPage(initialIndex: 0,)), // GPSTracker 페이지 이동
                   );
-                  _refreshPointCount(); // GPSTracker 종료 후 포인트 갱신
                 },
                 icon: Icon(
                   Icons.add,
                   color: Colors.black,
-                  size: MediaQuery.of(context).size.height * 0.025,
+                  size: _widgetSize,
                 ),
               ),
             ],

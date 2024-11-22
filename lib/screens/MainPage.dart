@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:soom_charm/screens/BreathPatternPage.dart';
 import 'package:soom_charm/screens/GPSTrackerPage.dart';
 import 'package:soom_charm/screens/GameStagePage.dart';
-import 'package:soom_charm/screens/SettingPage.dart';
 
 class MainPage extends StatefulWidget {
   final int initialIndex;
@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _pages = [
     GPSTrackerPage(),
     GameStagePage(),
-    SettingsPage()
+    BreathPatternPage()
   ];
 
   @override
@@ -43,7 +43,7 @@ class _MainPageState extends State<MainPage> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.speed), label: 'walk'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'setting')
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'my profile')
         ],
       ),
     );
