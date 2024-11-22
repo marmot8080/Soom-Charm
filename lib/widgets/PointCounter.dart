@@ -10,8 +10,9 @@ class PointCounter extends StatefulWidget {
 }
 
 class _PointCounter extends State<PointCounter> {
-  late SharedPreferenceManager spManager;
-  late int point;
+  late SharedPreferenceManager _spManager;
+  late int _point;
+  late double _widgetSize;
 
   @override
   void initState() {
@@ -21,10 +22,14 @@ class _PointCounter extends State<PointCounter> {
   }
 
   Future<void> _initializePointCount() async {
-    spManager = SharedPreferenceManager();
-    spManager.initInstance();
+    _spManager = SharedPreferenceManager();
+    _spManager.initInstance();
 
-    point = await spManager.getPoint() ?? 0;
+    _point = await _spManager.getPoint() ?? 0;
+
+    setState(() {
+      _widgetSize = MediaQuery.of(context).size.width * 0.04;
+    });
   }
 
   @override
@@ -45,12 +50,12 @@ class _PointCounter extends State<PointCounter> {
               Icon(
                 Icons.monetization_on,
                 color: Color(0xFFFFC648),
-                size: MediaQuery.of(context).size.width * 0.04,
+                size: _widgetSize,
               ),
               Text(
-                ' $point',
+                ' $_point',
                 style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.width * 0.04,
+                  fontSize: _widgetSize,
                   color: Colors.black,
                 ),
               ),
@@ -65,7 +70,7 @@ class _PointCounter extends State<PointCounter> {
                 icon: Icon(
                   Icons.add,
                   color: Colors.black,
-                  size: MediaQuery.of(context).size.width * 0.04,
+                  size: _widgetSize,
                 ),
               ),
             ],

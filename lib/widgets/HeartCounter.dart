@@ -12,7 +12,7 @@ class HeartCounter extends StatefulWidget {
 class _HeartCounter extends State<HeartCounter> {
   late SharedPreferenceManager spManager;
   late int _heartCount;
-  late double _heartSize;
+  late double _widgetSize;
 
   @override
   void initState() {
@@ -26,7 +26,9 @@ class _HeartCounter extends State<HeartCounter> {
 
     _heartCount = await spManager.getHeartCount() ?? 0;
 
-    _heartSize = MediaQuery.of(context).size.width * 0.04;
+    setState(() {
+      _widgetSize = MediaQuery.of(context).size.width * 0.04;
+    });
   }
 
   @override
@@ -49,7 +51,7 @@ class _HeartCounter extends State<HeartCounter> {
                   (index) => Icon(
                 Icons.favorite,
                 color: Colors.red,
-                size: _heartSize,
+                size: _widgetSize,
               ),
             ),
           ),
@@ -61,7 +63,7 @@ class _HeartCounter extends State<HeartCounter> {
                     (index) => Icon(
                   Icons.favorite,
                   color: Colors.grey,
-                  size: _heartSize,
+                  size: _widgetSize,
                 ),
               ),
             ),
@@ -70,7 +72,7 @@ class _HeartCounter extends State<HeartCounter> {
             Text(
               ' +${_heartCount - 5}',
               style: TextStyle(
-                fontSize: _heartSize,
+                fontSize: _widgetSize,
                 color: Colors.black,
               ),
             ),
@@ -85,7 +87,7 @@ class _HeartCounter extends State<HeartCounter> {
             icon: Icon(
               Icons.add,
               color: Colors.black,
-              size: _heartSize,
+              size: _widgetSize,
             ),
           ),
         ],

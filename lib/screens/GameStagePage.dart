@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/mini_game/RecorderGamePage.dart';
-import 'package:soom_charm/util/SharedPreferenceManager.dart';
 
 import 'package:soom_charm/widgets/GameStageButton.dart';
 import 'package:soom_charm/widgets/HeartCounter.dart';
@@ -16,42 +15,15 @@ class GameStagePage extends StatefulWidget {
 }
 
 class _GameStagePage extends State<GameStagePage> {
-  late SharedPreferenceManager spManager;
-  late int? _point = 0; // 포인트 값
-  late int? _heartCount = 0; // 하트 개수
 
   @override
   void initState() {
     super.initState();
-
-    // 비동기 초기화 메서드 호출
-    _initializeHeartCount();
-    _initializePointCount();
   }
 
   @override
   void dispose(){
     super.dispose();
-  }
-
-  void _initializeHeartCount() async {
-    spManager = SharedPreferenceManager();
-    spManager.initInstance(); // 인스턴스 초기화
-
-    _heartCount = await spManager.getHeartCount(); // 비동기 호출
-    setState(() {
-      _heartCount = _heartCount ?? 0;
-    });
-  }
-
-  void _initializePointCount() async {
-    spManager = SharedPreferenceManager();
-    spManager.initInstance(); // 인스턴스 초기화
-
-    _point = await spManager.getPoint(); // 비동기 호출
-    setState(() {
-      _point = _point ?? 0;
-    });
   }
 
   @override
