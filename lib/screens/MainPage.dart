@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:soom_charm/screens/BreathPatternPage.dart';
 import 'package:soom_charm/screens/GPSTrackerPage.dart';
 import 'package:soom_charm/screens/GameStagePage.dart';
-import 'package:soom_charm/screens/SettingPage.dart';
 
 class MainPage extends StatefulWidget {
   final int initialIndex;
