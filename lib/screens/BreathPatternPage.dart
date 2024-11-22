@@ -1,9 +1,10 @@
-import 'dart:async'; // Timer를 위해 필요
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:soom_charm/widgets/DistanceBar.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:soom_charm/util/SharedPreferenceManager.dart';
 import 'package:soom_charm/screens/SettingPage.dart';
 import 'package:soom_charm/screens/RankingPage.dart';
+import 'package:soom_charm/widgets/DistanceBar.dart';
 
 class BreathPatternPage extends StatefulWidget {
   @override
@@ -12,13 +13,24 @@ class BreathPatternPage extends StatefulWidget {
 
 class _BreathPatternPageState extends State<BreathPatternPage> {
   final String nickname = 'zoe'; // Dynamic nickname
-  final double remainingDistance = 3.0; // 실시간 업데이트가 가능한 남은 거리 정보
-  final double totalDistance = 15.5; // 실시간 업데이트가 가능한 총 이동 거리 정보
+  final double _maxDistance = 3.0; // 포인트 획들 기준 거리 정보
+  late SharedPreferenceManager _spManager;
+  late double? _totalDistance; // 총 이동 거리 정보
   double _progress = 0.0; // DistanceBar의 초기 progress 값
 
   @override
   void initState() {
     super.initState();
+
+    initialize();
+  }
+
+  void initialize() async {
+    _spManager = SharedPreferenceManager();
+    _spManager.initInstance();
+    _totalDistance = await _spManager.getTotalDistance();
+    _totalDistance = _totalDistance ?? 0;
+
     _startAnimation(); // 페이지 로드 시 애니메이션 시작
   }
 
@@ -116,7 +128,7 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                         TextSpan(
-                          text: '${totalDistance}km', // 총 이동 거리 변수
+                          text: '${_totalDistance}km', // 총 이동 거리 변수
                           style: TextStyle(
                             fontSize: 16, // 크기를 더 크게
                             fontWeight: FontWeight.bold, // 두껍게
@@ -139,7 +151,7 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                           style: TextStyle(fontSize: 14, color: Colors.black),
                         ),
                         TextSpan(
-                          text: '${remainingDistance}km ', // 남은 거리 정보 변수
+                          text: '${_maxDistance - _totalDistance! % _maxDistance}km ', // 남은 거리 정보 변수
                           style: TextStyle(fontSize: 14, color: Colors.green),
                         ),
                         TextSpan(
@@ -159,7 +171,7 @@ class _BreathPatternPageState extends State<BreathPatternPage> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    '3km / 5km',
+                    '${_totalDistance! % _maxDistance}km / ${_maxDistance}km',
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                 ],
