@@ -49,4 +49,4 @@ app.*.map.json
 *.json
 
 # Ignore app/google-services.json files
-app/google-services.json
+android/app/google-services.json
